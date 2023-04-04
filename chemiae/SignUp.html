@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base target = "_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>SignUp</title>
+</head>
+<body>
+
+    <div class = "container">
+        <h5>Sign Up a New Account</h5>
+        <div class = "row">
+            <div class = "input-field col s6">
+                <input type= "text" id = "user">
+                <label> Set a username: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class = "input-field col s6">
+                <input type = "text" id = "pass">
+                <label> Set up a password: </label>
+            </div>
+        </div>
+        <div class = "row">
+            <button id= "goBack" class = "btn waves-effect waves-light amber darken-4" onclick = "goToMain();">Go Back</button>
+            <button id = "submitInfo" class = "btn waves-effect waves-light amber darken-4" onclick = "createAccount();">Create Account</button>
+        </div>
+    </div>
+    <SCRIPT>
+        function goToMain(){
+            window.location.replace("index.html");
+        }
+        function createAccount(){
+            //code
+        }
+    </SCRIPT>
+</body>
+</html>
