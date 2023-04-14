@@ -2,9 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base target = "_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Settings</title>
 </head>
 <body>
-
+<div class = "container">
+    <div class = "row">
+        <button id="BackToMain" class = "btn waves-effect waves-light amber darken-4" onclick="goToMain();">Back</button>
+    </div>
+</div>
+<div class = "container">
+    <h5>Testing for quiz</h5>
+    <h6>Who is the best</h6>
+    <div class = "row">
+        <form action = "#">
+            <p>
+                <label>
+                    <input id = "a" class = "with-gap" name="group1" type="radio" onclick="setResult(1);"/>
+                    <span>Dwayne the paper johndaughter</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id = "b" class = "with-gap" name="group1" type="radio" onclick="setResult(2);"/>
+                    <span>The kardash aways</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id ="c" class = "with-gap" name="group1" type="radio" onclick="setResult(3);"/>
+                    <span>My man</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id ="d" class = "with-gap" name="group1" type="radio" onclick="setResult(4);"/>
+                    <span>option</span>
+                </label>
+            </p>
+        </form>
+    </div>
+    <div class = "row">
+        <button id = "updateProf" class = "btn waves-effect waves-light amber darken-4" onclick = "czechOption();">Czech option</button>
+    </div>
+    <div class="row">
+        <div class = "input-field col s6">
+            <input type = "text" id = "info">
+            <label>  </label>
+        </div>
+    </div>
+</div>
+<SCRIPT>
+    let correctOption = 3;
+    let option = 0;
+    function czechOption(){
+        if(correctOption == option){
+            document.getElementById("info").value = "good job ur smart";
+        }else{
+            document.getElementById("info").value = "wrong";
+        }
+    }
+    function setResult(int){
+        option = int;
+    }
+    function goToMain(){
+        window.location.replace("dumb.html");
+    }
+    //https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_text
+</SCRIPT>
 </body>
 </html>
