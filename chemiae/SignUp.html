@@ -27,16 +27,55 @@
         </div>
         <div class = "row">
             <button id= "goBack" class = "btn waves-effect waves-light amber darken-4" onclick = "goToMain();">Go Back</button>
-            <button id = "submitInfo" class = "btn waves-effect waves-light amber darken-4" onclick = "createAccount();">Create Account</button>
+            <button id = "submitInfo" class = "btn waves-effect waves-light amber darken-4" onclick = "createNewUser();">Create Account</button>
         </div>
     </div>
-    <SCRIPT>
+    <div class = "container">
+        <button id="SignIn" class = "btn waves-effect waves-deep purple" >Sign Up</button>
+    </div> 
+     <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+     <script type="module" src="module.js">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import  { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5P4An8O-A-3ZSme0fvqEV8lJsS2dPh40",
+            authDomain: "chemiae.firebaseapp.com",
+            projectId: "chemiae",
+            storageBucket: "chemiae.appspot.com",
+            messagingSenderId: "942176952217",
+            appId: "1:942176952217:web:fa9d3b722e1236784b3d08",
+            measurementId: "G-HKC5BTZMCH"
+        };
+
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        </script>
+        <script type="module" src="main.js">
+        function createNewUser(){
+            createUserWithEmailAndPassword(auth, "hi@gmail.com", "hiiiiiii")
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message
+                console.log(error);
+            });
+        }
         function goToMain(){
             window.location.replace("index.html");
         }
-        function createAccount(){
-            //code
-        }
+        //https://stackoverflow.com/questions/53630310/use-functions-defined-in-es6-module-directly-in-html
     </SCRIPT>
 </body>
 </html>
