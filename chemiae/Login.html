@@ -10,33 +10,25 @@
   <title>SignUp</title>
 </head>
 <body>
-<div class = "container">
-    <h5>Welcome Back!</h5>
-    <div class = "row">
-        <div class = "input-field col s6">
-          <label>Username: </label>
-          <input type= "text" id = "user">
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <div class = "container">
+        <h5>Welcome Back!</h5>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="email" type="text" class="validate" required>
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class = "row">
+          <button id = "goBack" class = "btn waves-effct waves light amber darken-4" >Go Back</button>
+          <button id = "Login" class ="btn waves-effect waves light amber darken-4"  >Log In</button>
         </div>
     </div>
-    <div class="row">
-        <div class = "input-field col s6">
-          <label>Password: </label>
-          <input type = "text" id = "pass">
-        </div>
-    </div>
-  </div>
-  <div>
-    <button id = "goBack" class = "btn waves-effct waves light amber darken-4" onclick = "goToMain();">Go Back</button>
-    <button id = "LogInNow" class ="btn waves-effect waves light amber darken-4"  onclick="locateAccount();">Log In</button>
-  </div>
-</div>
-<SCRIPT>
-  function goToMain(){
-    window.location.replace("index.html");
-  }
-  function locateAccount(){
-    //code
-  }
-</SCRIPT>
+    <script src = "LoginScript.js"></script>
 </body>
 </html>
