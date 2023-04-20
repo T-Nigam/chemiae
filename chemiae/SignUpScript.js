@@ -20,7 +20,8 @@ const firebaseConfig = {
             // Signed in 
             window.user = userCredential.user;
             console.log(userCredential)
-            // ...
+            window.location.replace("indexAfter.html");
+
           })
           .catch((error) => {
             const errorCode = error.code;
