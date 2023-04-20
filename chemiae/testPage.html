@@ -8,6 +8,14 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Settings</title>
+    <style>
+        input[type=radio]#red {
+            accent-color: red;
+        }
+        input[type=radio]#green {
+            accent-color: green;
+        }
+    </style>
 </head>
 <body>
 <div class = "container">
@@ -47,7 +55,7 @@
         </form>
     </div>
     <div class = "row">
-        <button id = "updateProf" class = "btn waves-effect waves-light amber darken-4" onclick = "czechOption();">Czech option</button>
+        <button id = "updateProf" class = "btn waves-effect waves-light amber darken-4" onclick = "checkOption();">Czech option</button>
     </div>
     <div class="row">
         <div class = "input-field col s6">
@@ -56,26 +64,6 @@
         </div>
     </div>
 </div>
-<SCRIPT>
-    let correctOption = 3;
-    let option = 0;
-    function czechOption(){
-        if(correctOption == option){
-            document.getElementById("info").value = "good job ur smart";
-            const addPoint = 1;
-            localStorage.setItem('addPoint', addPoint);
-        }else{
-            document.getElementById("info").value = "wrong";
-        }
-    }
-    function setResult(int){
-        option = int;
-    }
-    function goToMain(){
-        window.location.replace("dumb.html");
-        uploadStuff();
-    }
-    //https://www.youtube.com/watch?v=x0VcigW9kN0&t=200s
-</SCRIPT>
+<SCRIPT src = "testPageScript.js"></SCRIPT>
 </body>
 </html>
