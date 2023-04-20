@@ -11,7 +11,7 @@ const firebaseConfig = {
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
     auth = firebase.auth(app);
-
+    
     function login(){
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -19,11 +19,13 @@ const firebaseConfig = {
         .then((userCredential) => {
             // Signed in 
             window.user = userCredential.user;
+            window.location.replace("indexAfter.html");
             // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            
           });
     }
 
