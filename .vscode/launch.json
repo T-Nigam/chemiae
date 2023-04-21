@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open testPage.html",
-            "file": "c:\\Users\\dcnig\\Downloads\\chemiae\\chemiae\\testPage.html"
+            "name": "Open index.html",
+            "file": "${workspaceFolder}/chemiae/index.html"
         }
     ]
 }

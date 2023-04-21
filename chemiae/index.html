@@ -61,19 +61,29 @@
             transition: all 300ms ease-in-out;
             transform:translate(-50%,-50%)scale(1);
         }
+
+        .hide{display:none;}
     </style>
+    
 </head>
 <html>
     <body>
         
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js' integrity='sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==' crossorigin='anonymous'></script>
         <div class = "container">
-            <div class = "row">
+            <div class = "row" id = "before">
                 <h8>Chemiae by Educatio</h8>
                     <h10>&nbsp</h10>
                     <div class = "right">
-                        <button id="SignIn" class = "btn waves-effect waves-deep purple" onclick="SignUp();">Sign Up</button>
-                        <button id ="Login" class = "btn waves-effect waves-deep purple" onclick="LogIn();">Log in</button>
+                        <button id="SignIn" class = "btn waves-effect waves-deep purple" onclick="signUpOpen();">Sign Up</button>
+                        <button id ="Login" class = "btn waves-effect waves-deep purple" onclick="logInOpen();">Log in</button>
+                    </div>
+            </div>
+            <div class = "hide" id = "after">
+                <h8>Chemiae by Educatio</h8>
+                    <h10>&nbsp</h10>
+                    <div class = "right">
+                        <button id="test" class = "btn waves-effect waves-deep purple" onclick="testOpen();">Take Test</button>
+                        <button id ="signOut" class = "btn waves-effect waves-deep purple" >Sign Out</button>
                     </div>
             </div>
 
@@ -242,11 +252,109 @@
                 </p>
             </div>
         </div>
+        
 
+        
 
         <SCRIPT src = "indexScript.js"></SCRIPT>
         <!---Page navigation: https://stackoverflow.com/questions/24903148/navigate-between-html-files --->
         <!---Pop-up V2: https://www.youtube.com/watch?v=f8mL0_4GeV0--->
     </body>
+    <meta charset="UTF-8">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <base target = "_top">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   
+    <style>
+        input[type=radio] {
+            accent-color: green;
+         }
+    </style>
+    
+    <body>
+        <div class="popup" id="logInPage">
+            <div class = "overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="logInOpen();">&times</div>
+                    <div class = "container">
+                        <h5>Welcome</h5>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input id="email" type="text" class="validate" required>
+                            <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s6">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <button id = "login" class = "btn waves-effect waves-light amber darken-4">Create Account</button>
+                        </div>
+                    
+                    </div>
+            </div>
+        </div>
+        <div class="popup" id="signUpPage">
+            <div class = "overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="signUpOpen();">&times</div>
+                    <div class = "container">
+                        <h5>Sign Up a New Account</h5>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input id="email" type="text" class="validate" required>
+                            <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s6">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <button id = "signUp" class = "btn waves-effect waves-light amber darken-4">Create Account</button>
+                        </div>
+                    
+                    </div>
+            </div>
+        </div>
+
+        <div class="popup" id="testPage">
+            <div class = "overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="testOpen();">&times</div>
+                <div class = "container">
+                    <h5>Testing for quiz</h5>
+                    <h6>Who is the best</h6>
+                        
+                            
+                    <input type="radio" id="RadioButton" name="RadioButton" value="RadioButton">
+                    <label for="RadioButton">Radio Button</label>
+                       
+                    </div>
+                    <div class = "row">
+                        <button id = "updateProf" class = "btn waves-effect waves-light amber darken-4" onclick = "checkOption();">Czech option</button>
+                    </div>
+                    <div class="row">
+                        <div class = "input-field col s6">
+                            <input type = "text" id = "info">
+                            <label>  </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src = "testQ&As.js"></script>
+    <SCRIPT src = "IndexScriptTwo.js"></SCRIPT>
 </html>
 
