@@ -82,7 +82,7 @@
                 <h8>Chemiae by Educatio</h8>
                     <h10>&nbsp</h10>
                     <div class = "right">
-                        <button id="test" class = "btn waves-effect waves-deep purple" onclick="testOpen();">Take Test</button>
+                        <button id="test" class = "btn waves-effect waves-deep purple" >Take Test</button>
                         <button id ="signOut" class = "btn waves-effect waves-deep purple" >Sign Out</button>
                     </div>
             </div>
@@ -276,7 +276,6 @@
             accent-color: green;
          }
     </style>
-    
     <body>
         <div class="popup" id="logInPage">
             <div class = "overlay"></div>
@@ -286,16 +285,16 @@
                         <h5>Welcome</h5>
                         <div class="row">
                             <div class="input-field col s6">
-                            <input id="email" type="text" class="validate" required>
-                            <label for="email">Email</label>
+                            <input id="emailLog" type="text" class="validate" required>
+                            <label for="emailLog">Email</label>
                             </div>
                             <div class="input-field col s6">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
+                            <input id="passwordLog" type="password" class="validate">
+                            <label for="passwordLog">Password</label>
                             </div>
                         </div>
                         <div class = "row">
-                            <button id = "login" class = "btn waves-effect waves-light amber darken-4">Create Account</button>
+                            <button id = "login" class = "btn waves-effect waves-light amber darken-4">Log In</button>
                         </div>
                     
                     </div>
@@ -309,12 +308,12 @@
                         <h5>Sign Up a New Account</h5>
                         <div class="row">
                             <div class="input-field col s6">
-                            <input id="email" type="text" class="validate" required>
-                            <label for="email">Email</label>
+                            <input id="emailSign" type="text" class="validate" required>
+                            <label for="emailSign">Email</label>
                             </div>
                             <div class="input-field col s6">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
+                            <input id="passwordSign" type="password" class="validate">
+                            <label for="passwordSign">Password</label>
                             </div>
                         </div>
                         <div class = "row">
@@ -332,20 +331,34 @@
                 <div class = "container">
                     <h5>Testing for quiz</h5>
                     <h6>Who is the best</h6>
-                        
-                            
-                    <input type="radio" id="RadioButton" name="RadioButton" value="RadioButton">
-                    <label for="RadioButton">Radio Button</label>
-                       
+                    <div class = "row">
+                            <input name="group1" id ="a" type="radio" checked />
+                            <h5 id = "6"></h5>
+                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "1">
+                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "w">
                     </div>
                     <div class = "row">
-                        <button id = "updateProf" class = "btn waves-effect waves-light amber darken-4" onclick = "checkOption();">Czech option</button>
+                            <input name="group1" id = "b" type="radio" />
+                            <h5 id = "7"></h5>
+                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "2">
+                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "x">
                     </div>
+                    <div class = "row">
+                            <input name="group1" id = "c" type="radio" checked />
+                            <h5 id = "8"></h5>
+                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "3">
+                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "y">
+                    </div>
+                    <div class = " row">
+                          <p>
+                            <input name="group1" id = "d" type="radio" />
+                            <h5 id = "8"></h5>
+                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "4">
+                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "z">
+                          </p>
+                    </div>    
                     <div class="row">
-                        <div class = "input-field col s6">
-                            <input type = "text" id = "info">
-                            <label>  </label>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -354,7 +367,6 @@
     </body>
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
-    <script src = "testQ&As.js"></script>
     <SCRIPT src = "IndexScriptTwo.js"></SCRIPT>
 </html>
 
