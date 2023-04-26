@@ -76,16 +76,32 @@ const firebaseConfig = {
                 console.log(errorMessage);
             });  
     }
+
     function random(){
-        
+        const answer = Math.floor(random()*118);
+        correctAnswer= answer;
+        let options = [];
+        for(var i = 0; i<4; i++){
+            const choice = Math.floor(random()*118);
+            if(choice != answer){
+                for(var x = 0; x<options.length; x++){
+                    if(choice == options[x] || options[x] == null){}else{
+                        options.push(choice);
+                    }
+                }
+            }
+        }
+        return options;
     }
 
     function setAnswers(){
-        var newText = document.getElementsByClassName("one")[0];
-        newText.innerHTML = awnserChoices[choiceOne];
-        document.getElementById().innerText= awnserChoices[1];
-        document.getElementById().innerText= awnserChoices[2];
-        document.getElementById().innerText= awnserChoices[3];
+        let options = random();
+        var newText = [document.getElementsByClassName("one")[0], document.getElementsByClassName("two")[0], document.getElementsByClassName("three")[0], document.getElementsByClassName("four")[0]];
+        let chosen = [];
+        for(var i = 0; i<4; i++){
+            let random = Math.floor(random()*4 - 1)
+            if(chosen[i] == null ){}
+        }
         testOpen();
     }
 
