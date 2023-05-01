@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns = "http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <base target = "_top">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <title>MainPage</title>
+        <script src = "code.js"></script>
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "form">
+                <h2>Quiz mode</h2>
+                <h4 id = "question"></h4>
+                <div class = "row"><button id = "op_1" onclick = "check(0)">thing</button></div>
+                <div class = "row"><button id = "op_2" onclick = "check(1)">thing</button></div>
+                <div class = "row"><button id = "op_3" onclick = "check(2)">thing</button></div>
+                <div class = "row"><button id = "op_4" onclick = "check(3)">thing</button></div>
+            </div>
+        </div>
+        <div class = "row">
+            <h6 id = "check_this"></h6>
+        </div>
+        <script>
+            console.clear();
+            let options = ["water","sodium chloride", "soda", "pure capsasin", "HESH"];
+            let questions = ["healthy stuff", "french fries", "coca cola", "don't injest this stuff", "High Explosive Squash Head"];
+            let key = Math.floor(Math.random()*5);
+            let random = Math.floor(Math.random()*4);
+            document.getElementById("question").innerHTML = questions[key];
+            if(random == 0){
+                document.getElementById("op_1").innerHTML = options[key];
+            }else if(random == 1){
+                document.getElementById("op_2").innerHTML = options[key];
+            }else if(random == 2){
+                document.getElementById("op_3").innerHTML = options[key];
+            }else{
+                document.getElementById("op_4").innerHTML = options[key];
+            }
+            let list_1 = [];
+            let list_2 = [];
+            for(let i = 0; i < key; i++){
+                list_1[i] = options[i];
+            }
+            if((options.length - key - 1) > 0){
+                for(let i = 1; i < (options.length - key); i++){
+                    list_2[i - 1] = options[i + key];
+                }
+            }
+
+            let new_list = [];
+            for(let i = 0; i < list_1.length; i++){
+                new_list[i] = list_1[i];
+            }
+            let j = new_list.length;
+            if(list_2.length > 0){
+                for(let i = 0; i < list_2.length; i++){
+                    new_list[i + j] = list_2[i];
+                }
+            }
+            console.log(new_list);
+            /*
+            for(let i = new_list.length; i > 0; i--){
+                let k = Math.floor(Math.random()*(i + 1));
+                
+            }*/
+            randomize(new_list);
+            
+            console.log(new_list);
+            if(random == 0){
+                document.getElementById("op_2").innerText = new_list[0];
+                document.getElementById("op_3").innerText = new_list[1];
+                document.getElementById("op_4").innerText = new_list[2];
+            }else if(random == 1){
+                document.getElementById("op_1").innerText = new_list[0];
+                document.getElementById("op_3").innerText = new_list[1];
+                document.getElementById("op_4").innerText = new_list[2];
+            }else if(random== 2){
+                document.getElementById("op_1").innerText = new_list[0];
+                document.getElementById("op_2").innerText = new_list[1];
+                document.getElementById("op_4").innerText = new_list[2];
+            }else{
+                document.getElementById("op_1").innerText = new_list[0];
+                document.getElementById("op_2").innerText = new_list[1];
+                document.getElementById("op_3").innerText = new_list[2];
+            }
+
+            function randomize(values) {
+                let index = values.length,
+                    randomIndex;
+
+                // While there remain elements to shuffle.
+                while (index != 0) {
+                    // Pick a remaining element.
+                    randomIndex = Math.floor(Math.random() * index);
+                    index--;
+
+                    // And swap it with the current element.
+                    [values[index], values[randomIndex]] = [values[randomIndex], values[index]];
+                }
+
+                return values;
+            }
+            function check(answer){
+                if(random == answer){
+                    document.getElementById("check_this").innerText = "correct";
+                }else{
+                    document.getElementById("check_this").innerText = "wrong";
+                }
+            }
+        </script>
+    </body>
+</html>
