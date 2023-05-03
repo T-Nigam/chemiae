@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns = "http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base target = "_top">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>MainPage</title>
+    <style>
+        .custom_button{
+            border: 3px #444444 solid;
+            border-radius: 20px;
+            -moz-border-radius: 10px;
+            background: white;
+            color: #9c27b0;
+            font-size: 25px;
+            width: 190px;
+            height: 40px;
+            margin: auto;
+        }
+        .custom_button:hover{
+            border: 3px #000000 solid;
+            background: gray;
+            color: white;
+        }
+        .custom_button:focus{
+            border: 3px #444444 solid;
+            border-radius: 20px;
+            -moz-border-radius: 10px;
+            background: white;
+            color: red;
+            font-size: 25px;
+            width: 190px;
+            height: 40px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class = "container">
+    <div class = "form">
+        <h2>Quiz mode</h2>
+        <h4 id = "question"></h4>
+        <div class = "row" class = "button"><button class = "custom_button" id = "op_1" onclick = "check(0)">thing</button></div>
+        <div class = "row" class = "button"><button class = "custom_button" id = "op_2" onclick = "check(1)">thing</button></div>
+        <div class = "row" class = "button"><button class = "custom_button" id = "op_3" onclick = "check(2)">thing</button></div>
+        <div class = "row" class = "button"><button class = "custom_button" id = "op_4" onclick = "check(3)">thing</button></div>
+    </div>
+</div>
+<script>
+    let options = ["Hydrogen" ,"Helium" ,"Lithium" ,"Beryllium" ,"Boron" ,"Carbon" ,"Nitrogen" ,"Oxygen" ,"Fluorine" ,"Neon" ,"Sodium" ,"Magnesium" ,"Aluminum" ,"Silicon" ,"Phosphorus" ,"Sulfur" ,"Chlorine" ,"Argon" ,"Potassium" ,"Calcium" ,"Scandium" ,"Titanium" ,"Vanadium" ,"Chromium" ,"Manganese" ,"Iron" ,"Cobalt" ,"Nickel" ,"Copper" ,"Zinc" ,"Gallium" ,"Germanium" ,"Arsenic" ,"Selenium" ,"Bromine" ,"Krypton" ,"Rubidium" ,"Strontium" ,"Yttrium" ,"Zirconium" ,"Niobium" ,"Molybdenum" ,"Technetium" ,"Ruthenium" ,"Rhodium" ,"Palladium" ,"Silver" ,"Cadmium" ,"Indium" ,"Tin" ,"Antimony" ,"Tellurium" ,"Iodine" ,"Xenon" ,"Cesium" ,"Barium" ,"Lanthanum" ,"Cerium" ,"Praseodymium" ,"Neodymium" ,"Promethium" ,"Samarium" ,"Europium" ,"Gadolinium" ,"Terbium" ,"Dysprosium" ,"Holmium" ,"Erbium" ,"Thulium" ,"Ytterbium" ,"Lutetium" ,"Hafnium" ,"Tantalum" ,"Tungsten" ,"Rhenium" ,"Osmium" ,"Iridium" ,"Platinum" ,"Gold" ,"Mercury" ,"Thallium" ,"Lead" ,"Bismuth" ,"Polonium" ,"Astatine" ,"Radon" ,"Francium" ,"Radium" ,"Actinium" ,"Thorium" ,"Protactinium" ,"Uranium" ,"Neptunium" ,"Plutonium" ,"Americium" ,"Curium" ,"Berkelium" ,"Californium" ,"Einsteinium" ,"Fermium" ,"Mendelevium" ,"Nobelium" ,"Lawrencium" ,"Rutherfordium" ,"Dubnium" ,"Seaborgium" ,"Bohrium" ,"Hassium" ,"Meitnerium" ,"Darmstadtium" ,"Roentgenium" ,"Copernicium" ,"Nihonium" ,"Flerovium" ,"Moscovium" ,"Livermorium" ,"Tennessine" ,"Oganesson" ];
+    let questions = ["_____ is used to reduce the iron pellets into sponge iron, metallic iron that can then be processed to form steel.",
+        "_____ is used to provide a pure atmosphere for the manufacturing of fiber optic cables, therefore preventing the formation of air bubbles.",
+        "_____ is used to strengthen nerve cell connections in brain regions that are involved in regulating mood, thinking and behavior.",
+        "_____ is used to strengthen the thermal and electrical conductivity of copper or nickel",
+        "_____ is used to increase the energy output of solid rocket fuel.",
+        "_____ is used to regulate the Earth's temperature and to support living organisms.",
+        "_____ is used to create fertilizers for global food production",
+        "_____ is used to be absorbed by our cells and converted into energy.",
+        "_____ is used to insulate high-power electricity transformers for nuclear power plants.",
+        "_____ is used  to make high-voltage indicators and switching gears, components that are vital in the production of modern day electronics.",
+        "_____ is used to control blood pressure and blood volume in the human body.",
+        "_____ is used to make protein, bones, and DNA in the body.",
+        "_____ is used to construct structural components due to its lightweight and strong properties.",
+        "_____ is used to create semiconductors.",
+        "_____ is used to assist in the growth, maintenance, and repair of all tissues and cells in the body.",
+        "_____ is used to create sulfuric acid.",
+        "_____ is used to be put into swimming pool water to kill harmful bacteria.",
+        "_____ is used to stop oxygen from corroding the filament in incandescent light bulbs.",
+        "_____ is used to help move nutrients into cells and waste products out of cells.",
+        "_____ is used to help muscles contract.",
+        "_____ is used to create frames for aerospace industry components.",
+        "_____ is used to make a pigment in house paint, artists’ paint, place, enamels, and paper.",
+        "_____ is used to manufacture steel alloys for aerospace engineering.",
+        "_____ is used to regulate blood sugar levels in the body by being a key component in insulin.",
+        "_____ is used to help the body form sex hormones.",
+        "_____ is used to create hemoglobin in the body.",
+        "_____ is used to treat cancer and to irradiate food to preserve it",
+        "_____ is used to create coins.",
+        "_____ is used to conduct heat and electricity in electrical equipment.",
+        "_____ is used to heal damaged tissue in the body.",
+        "_____ is used in electronics due to its malleable nature.",
+        "_____ is used to be combined with metal alloys to make transistors in electronic devices.",
+        "_____ is used to be used industrially as an alloying agent for lead.",
+        "_____ is used to be used by the body to make selenoproteins.",
+        "_____ is used as pesticides for fruit growing.",
+        "_____ is used for double-pane insulated windows since it is 12 times denser than air.",
+        "_____ is used as a propellant in ion engines.",
+        "_____ is used to give fireworks and flares a brilliant red color.",
+        "_____ is used as an additive to increase the strength of aluminum alloys.",
+        "_____ is used to make crucibles that can withstand heat-shock.",
+        "_____ is used  to strengthen steel alloys for jet engines and rockets.",
+        "_____ is used to strengthen, harden, and increase the electrical conductivity of steel.",
+        "_____ is used in nuclear medicine to see how parts of our body are working.",
+        "_____ is used  in the manufacturing of solar cells for solar panels.",
+        "_____ is used in catalytic converters for cars.",
+        "_____ is used as a substitute for platinum in fuel cell catalysts.",
+        "_____ is used in mirrors to reflect light.",
+        "_____ is used as a sacrificial corrosion-protection coating for steel.",
+        "_____ is used to dope germanium to make transistors.",
+        "_____ is used for plating steel cans used as food containers.",
+        "_____ is used in tracer rounds for guns.",
+        "_____ is used in new phase change memory chips developed by Intel™.",
+        "_____ is used to make thyroid hormones which regulate metabolism.",
+        "_____ is used in lamps that glow a beautiful blue.",
+        "_____ is used as a drilling fluid.",
+        "_____ is used for making drilling mud.",
+        "_____ is used to reduce blood levels of phosphate in people with kidney disease.",
+        "_____ is used as a rich red pigment",
+        "_____ is used as a high-strength alloy for aircraft engines.",
+        "_____ is used to make very strong permanent magnets for electronics.",
+        "_____ is used as a beta radiation source in luminous paint.",
+        "_____ is used to doe calcium chloride crystals for use in optical lasers.",
+        "_____ is used as a control rod for nuclear reactors.",
+        "_____ is used to improve the workability of iron and chromium alloys.",
+        "_____ is used to dope calcium fluoride and many other compounds to be used in solid-state drives.",
+        "_____ is used in computer hard disk drives.",
+        "_____ is used in nuclear reactors to keep a chain reaction under control.",
+        "_____ is used in infrared absorbing glass in safety glasses.",
+        "_____ is used in laser manufacturing and for surgical purposes.",
+        "_____ is used as an industrial catalyst due to its low toxicity.",
+        "_____ is used as a catalyst for cracking hydrocarbons in oil refineries.",
+        "_____ is used in control rods for nuclear submarines.",
+        "_____ is used in making surgical appliances immune to body liquids.",
+        "_____ is used in manufacturing heavy metal alloys such as high speed steel.",
+        "_____ is used in photoflash lamps.",
+        "_____ is used in manufacturing very hard alloys for fountain pen tips.",
+        "_____ is used as a hardening agent for platinum.",
+        "_____ is used as a compound in chemotherapy drugs used to treat cancers.",
+        "_____ is used in GPS units as a corrosion resistant conductor.",
+        "_____ is used in barometers and other scientific instruments.",
+        "_____ is used  in the production of low temperature thermometers.",
+        "_____ is used in the automobile industries in components such as storage batteries.",
+        "_____ is used to be the main ingredient in Pepto-Bismol.",
+        "_____ is used to eliminate static electricity produced during processes such as rolling wire.",
+        "_____ is used for nothing since its half-life is only 8 hours at most.",
+        "_____ is used in emitting radiation into tumors to treat cancer.",
+        "_____ is used for nothing since its half life is only 22 minutes.",
+        "_____ is used to produce radon gas for cancer treatment.",
+        "_____ is used as a source of radiation to produce other elements.",
+        "_____ is used as a potential fuel for generating nuclear energy.",
+        "_____ is used for nothing since the element is scarce, highly radioactive, and is toxic.",
+        "_____ is used as the main source of energy in a variety of nuclear projects, such as reactors and weapons.",
+        "_____ is used in military applications as an emitter of nuclear energy.",
+        "_____ is used as a heat source for sensitive electrical components in satellites.",
+        "_____ is used in smoke alarms to protect buildings.",
+        "_____ is used as a Radioisotope Thermal Generator on board satellites and deep space probes.",
+        "_____ is used for nothing due to its toxic radioactivity and due to the fact that less than a gram is made each year.",
+        "_____ is used in metal detectors for identifying gold and silver ores.",
+        "_____ is used for nothing due to the fact that it can only be obtained in milligram quantities from the neutron bombardment of plutonium in a reactor.",
+        "_____ is used or nothing due to the fact that it can only be obtained in milligram quantities from the neutron bombardment of plutonium in a reactor.",
+        "_____ is used for nothing due to the fact that only a few atoms have ever been created.",
+        "_____ is used for nothing due to the fact that only trace amounts of it can be made by bombarding curium with carbon.",
+        "_____ is used for nothing since only trace amounts of it can be made by bombarding californium with boron.",
+        "_____ is used for nothing since its half life is only 10 minutes.",
+        "_____ is used for nothing since its half life is only 32 hours.",
+        "_____ is used for nothing since its half life is only 2 minutes and 24 seconds long.",
+        "_____ is used for nothing since its half life is only 61 seconds.",
+        "_____ is used for nothing since its half life of 12 minutes.",
+        "_____ is used for nothing since its half life is 1.7 milliseconds.",
+        "_____ is used for nothing since its half life is 20 seconds.",
+        "_____ is used for nothing since its half life is 26 seconds.",
+        "_____ is used for nothing since its half life is 30 seconds.",
+        "_____ is used for nothing since its half life is 19 seconds.",
+        "_____ is used for nothing since its half life is .97 seconds.",
+        "_____ is used for nothing since its half life is 220 milliseconds",
+        "_____ is used for nothing since its half life is 53 milliseconds.",
+        "_____ is used for nothing since its half life is 80 milliseconds.",
+        "_____ is used for nothing since its half life is .93 milliseconds."];
+    let key = Math.floor(Math.random()*questions.length);
+    let random = Math.floor(Math.random()*4);
+    document.getElementById("question").innerHTML = questions[key];
+    if(random == 0){
+        document.getElementById("op_1").innerHTML = options[key];
+    }else if(random == 1){
+        document.getElementById("op_2").innerHTML = options[key];
+    }else if(random == 2){
+        document.getElementById("op_3").innerHTML = options[key];
+    }else{
+        document.getElementById("op_4").innerHTML = options[key];
+    }
+    let list_1 = [];
+    let list_2 = [];
+    for(let i = 0; i < key; i++){
+        list_1[i] = options[i];
+    }
+    if((options.length - key - 1) > 0){
+        for(let i = 1; i < (options.length - key); i++){
+            list_2[i - 1] = options[i + key];
+        }
+    }
+
+    let new_list = [];
+    for(let i = 0; i < list_1.length; i++){
+        new_list[i] = list_1[i];
+    }
+    let j = new_list.length;
+    if(list_2.length > 0){
+        for(let i = 0; i < list_2.length; i++){
+            new_list[i + j] = list_2[i];
+        }
+    }
+    randomize(new_list);
+    if(random == 0){
+        document.getElementById("op_2").innerText = new_list[0];
+        document.getElementById("op_3").innerText = new_list[1];
+        document.getElementById("op_4").innerText = new_list[2];
+    }else if(random == 1){
+        document.getElementById("op_1").innerText = new_list[0];
+        document.getElementById("op_3").innerText = new_list[1];
+        document.getElementById("op_4").innerText = new_list[2];
+    }else if(random== 2){
+        document.getElementById("op_1").innerText = new_list[0];
+        document.getElementById("op_2").innerText = new_list[1];
+        document.getElementById("op_4").innerText = new_list[2];
+    }else{
+        document.getElementById("op_1").innerText = new_list[0];
+        document.getElementById("op_2").innerText = new_list[1];
+        document.getElementById("op_3").innerText = new_list[2];
+    }
+
+    function randomize(values) {
+        let index = values.length,
+            randomIndex;
+
+        // While there remain elements to shuffle.
+        while (index != 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * index);
+            index--;
+
+            // And swap it with the current element.
+            [values[index], values[randomIndex]] = [values[randomIndex], values[index]];
+        }
+
+        return values;
+    }
+    function check(answer){
+        if(random == answer){
+            correct(answer);
+        }else{
+            incorrect(answer);
+        }
+    }
+    function correct(int){
+        document.getElementById('op_1').style.backgroundColor = 'Red';
+        document.getElementById('op_2').style.backgroundColor = 'Red';
+        document.getElementById('op_3').style.backgroundColor = 'Red';
+        document.getElementById('op_4').style.backgroundColor = 'Red';
+        document.getElementById('op_1').style.color = 'White';
+        document.getElementById('op_2').style.color = 'White';
+        document.getElementById('op_3').style.color = 'White';
+        document.getElementById('op_4').style.color = 'White';
+        document.getElementById("op_1").disabled = true;
+        document.getElementById("op_2").disabled = true;
+        document.getElementById("op_3").disabled = true;
+        document.getElementById("op_4").disabled = true;
+        if(int === 0){
+            document.getElementById('op_1').style.backgroundColor = '#76ff03';
+            document.getElementById('op_1').style.color = 'Black';
+        }else if(int === 1){
+            document.getElementById('op_2').style.backgroundColor = '#76ff03';
+            document.getElementById('op_2').style.color = 'Black';
+        }else if(int === 2){
+            document.getElementById('op_3').style.backgroundColor = '#76ff03';
+            document.getElementById('op_3').style.color = 'Black';
+        }else{
+            document.getElementById('op_4').style.backgroundColor = '#76ff03';
+            document.getElementById('op_4').style.color = 'Black';
+        }
+    }
+    function incorrect(int){
+        document.getElementById('op_1').style.backgroundColor = 'White';
+        document.getElementById('op_2').style.backgroundColor = 'White';
+        document.getElementById('op_3').style.backgroundColor = 'White';
+        document.getElementById('op_4').style.backgroundColor = 'White';
+        document.getElementById('op_1').style.color = '#9c27b0';
+        document.getElementById('op_2').style.color = '#9c27b0';
+        document.getElementById('op_3').style.color = '#9c27b0';
+        document.getElementById('op_4').style.color = '#9c27b0';
+        if(int === 0){
+            document.getElementById('op_1').style.backgroundColor = 'Red';
+            document.getElementById('op_1').style.color = 'White';
+        }else if(int === 1){
+            document.getElementById('op_2').style.backgroundColor = 'Red';
+            document.getElementById('op_2').style.color = 'White';
+        }else if(int === 2){
+            document.getElementById('op_3').style.backgroundColor = 'Red';
+            document.getElementById('op_3').style.color = 'White';
+        }else{
+            document.getElementById('op_4').style.backgroundColor = 'Red';
+            document.getElementById('op_4').style.color = 'White';
+        }
+    }
+    //Color scheme: Orange, light gray, black, purple
+    //https://materializecss.com/color.html
+</script>
+</body>
+</html>
