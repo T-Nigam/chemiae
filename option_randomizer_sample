@@ -170,57 +170,65 @@
         "_____ is used for nothing since its half life is 53 milliseconds.",
         "_____ is used for nothing since its half life is 80 milliseconds.",
         "_____ is used for nothing since its half life is .93 milliseconds."];
-    let key = Math.floor(Math.random()*questions.length);
-    let random = Math.floor(Math.random()*4);
-    document.getElementById("question").innerHTML = questions[key];
-    if(random == 0){
-        document.getElementById("op_1").innerHTML = options[key];
-    }else if(random == 1){
-        document.getElementById("op_2").innerHTML = options[key];
-    }else if(random == 2){
-        document.getElementById("op_3").innerHTML = options[key];
-    }else{
-        document.getElementById("op_4").innerHTML = options[key];
-    }
-    let list_1 = [];
-    let list_2 = [];
-    for(let i = 0; i < key; i++){
-        list_1[i] = options[i];
-    }
-    if((options.length - key - 1) > 0){
-        for(let i = 1; i < (options.length - key); i++){
-            list_2[i - 1] = options[i + key];
-        }
-    }
+        
+        //-----------Add the following bellow-----------
+        let random;
+        generateQuestion();
+        function generateQuestion() {
+        //----------------------------------------------
+        
+            let key = Math.floor(Math.random()*questions.length);
+            let random = Math.floor(Math.random()*4);
+            document.getElementById("question").innerHTML = questions[key];
+            if(random == 0){
+                document.getElementById("op_1").innerHTML = options[key];
+            }else if(random == 1){
+                document.getElementById("op_2").innerHTML = options[key];
+            }else if(random == 2){
+                document.getElementById("op_3").innerHTML = options[key];
+            }else{
+                document.getElementById("op_4").innerHTML = options[key];
+            }
+            let list_1 = [];
+            let list_2 = [];
+            for(let i = 0; i < key; i++){
+                list_1[i] = options[i];
+            }
+            if((options.length - key - 1) > 0){
+                for(let i = 1; i < (options.length - key); i++){
+                    list_2[i - 1] = options[i + key];
+                }
+            }
 
-    let new_list = [];
-    for(let i = 0; i < list_1.length; i++){
-        new_list[i] = list_1[i];
-    }
-    let j = new_list.length;
-    if(list_2.length > 0){
-        for(let i = 0; i < list_2.length; i++){
-            new_list[i + j] = list_2[i];
-        }
-    }
-    randomize(new_list);
-    if(random == 0){
-        document.getElementById("op_2").innerText = new_list[0];
-        document.getElementById("op_3").innerText = new_list[1];
-        document.getElementById("op_4").innerText = new_list[2];
-    }else if(random == 1){
-        document.getElementById("op_1").innerText = new_list[0];
-        document.getElementById("op_3").innerText = new_list[1];
-        document.getElementById("op_4").innerText = new_list[2];
-    }else if(random== 2){
-        document.getElementById("op_1").innerText = new_list[0];
-        document.getElementById("op_2").innerText = new_list[1];
-        document.getElementById("op_4").innerText = new_list[2];
-    }else{
-        document.getElementById("op_1").innerText = new_list[0];
-        document.getElementById("op_2").innerText = new_list[1];
-        document.getElementById("op_3").innerText = new_list[2];
-    }
+            let new_list = [];
+            for(let i = 0; i < list_1.length; i++){
+                new_list[i] = list_1[i];
+            }
+            let j = new_list.length;
+            if(list_2.length > 0){
+                for(let i = 0; i < list_2.length; i++){
+                    new_list[i + j] = list_2[i];
+                }
+            }
+            randomize(new_list);
+            if(random == 0){
+                document.getElementById("op_2").innerText = new_list[0];
+                document.getElementById("op_3").innerText = new_list[1];
+                document.getElementById("op_4").innerText = new_list[2];
+            }else if(random == 1){
+                document.getElementById("op_1").innerText = new_list[0];
+                document.getElementById("op_3").innerText = new_list[1];
+                document.getElementById("op_4").innerText = new_list[2];
+            }else if(random== 2){
+                document.getElementById("op_1").innerText = new_list[0];
+                document.getElementById("op_2").innerText = new_list[1];
+                document.getElementById("op_4").innerText = new_list[2];
+            }else{
+                document.getElementById("op_1").innerText = new_list[0];
+                document.getElementById("op_2").innerText = new_list[1];
+                document.getElementById("op_3").innerText = new_list[2];
+            }
+        }//------------Add this specific bracket--------------
 
     function randomize(values) {
         let index = values.length,
@@ -238,6 +246,13 @@
 
         return values;
     }
+    
+    //-----------Add the altVal function-----------
+    function altVal(int){
+        random = int;
+    }
+    //------------------------------------------------
+    
     function check(answer){
         if(random == answer){
             correct(answer);
@@ -295,6 +310,25 @@
             document.getElementById('op_4').style.color = 'White';
         }
     }
+    
+    //-----------Add the newQuestion function-----------
+    function newQuestion(){
+        document.getElementById("changeQuestion").hidden = true;
+        document.getElementById('op_1').style.backgroundColor = 'White';
+        document.getElementById('op_2').style.backgroundColor = 'White';
+        document.getElementById('op_3').style.backgroundColor = 'White';
+        document.getElementById('op_4').style.backgroundColor = 'White';
+        document.getElementById('op_1').style.color = '#9c27b0';
+        document.getElementById('op_2').style.color = '#9c27b0';
+        document.getElementById('op_3').style.color = '#9c27b0';
+        document.getElementById('op_4').style.color = '#9c27b0';
+        document.getElementById("op_1").disabled = false;
+        document.getElementById("op_2").disabled = false;
+        document.getElementById("op_3").disabled = false;
+        document.getElementById("op_4").disabled = false;
+        generateQuestion();
+    }
+    //--------------------------------------
     //Color scheme: Orange, light gray, black, purple
     //https://materializecss.com/color.html
 </script>
