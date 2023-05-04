@@ -311,8 +311,9 @@
         }
     }
     
-    //-----------Add the newQuestion function-----------
+    //-----------Add the functions below-----------
     function newQuestion(){
+    /*------------Delete within this margin-------------
         document.getElementById("changeQuestion").hidden = true;
         document.getElementById('op_1').style.backgroundColor = 'White';
         document.getElementById('op_2').style.backgroundColor = 'White';
@@ -326,7 +327,27 @@
         document.getElementById("op_2").disabled = false;
         document.getElementById("op_3").disabled = false;
         document.getElementById("op_4").disabled = false;
+        -------------------------------------------*/
+        //-------------Add the line below-----------
+         resetButtons(){
+         //-----------------------------------------
+        
         generateQuestion();
+    }
+    function resetButtons(){
+        document.getElementById("changeQuestion").hidden = true;
+        document.getElementById('op_1').style.backgroundColor = 'White';
+        document.getElementById('op_2').style.backgroundColor = 'White';
+        document.getElementById('op_3').style.backgroundColor = 'White';
+        document.getElementById('op_4').style.backgroundColor = 'White';
+        document.getElementById('op_1').style.color = '#9c27b0';
+        document.getElementById('op_2').style.color = '#9c27b0';
+        document.getElementById('op_3').style.color = '#9c27b0';
+        document.getElementById('op_4').style.color = '#9c27b0';
+        document.getElementById("op_1").disabled = false;
+        document.getElementById("op_2").disabled = false;
+        document.getElementById("op_3").disabled = false;
+        document.getElementById("op_4").disabled = false;
     }
     //--------------------------------------
     //Color scheme: Orange, light gray, black, purple
