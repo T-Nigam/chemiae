@@ -8,7 +8,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>MainPage</title>
+    <title>Test</title>
     <style>
         .custom_button{
             border: 3px #444444 solid;
@@ -16,9 +16,9 @@
             -moz-border-radius: 10px;
             background: white;
             color: #9c27b0;
-            font-size: 25px;
-            width: 190px;
-            height: 40px;
+            font-size: 20px;
+            width: 142px;
+            height: 32px;
             margin: auto;
         }
         .custom_button:hover{
@@ -32,11 +32,35 @@
             -moz-border-radius: 10px;
             background: white;
             color: red;
-            font-size: 25px;
-            width: 190px;
-            height: 40px;
             margin: auto;
         }
+
+
+        .custom_button_2{
+            border: 3px #444444 solid;
+            border-radius: 20px;
+            -moz-border-radius: 10px;
+            background: white;
+            color: #9c27b0;
+            font-size: 20px;
+            width: 240px;
+            height: 32px;
+            margin: auto;
+        }
+        .custom_button_2:hover{
+            border: 3px #000000 solid;
+            background: gray;
+            color: white;
+        }
+        .custom_button_2:focus{
+            border: 3px #444444 solid;
+            border-radius: 20px;
+            -moz-border-radius: 10px;
+            background: white;
+            color: red;
+            margin: auto;
+        }
+
     </style>
 </head>
 <body>
@@ -49,9 +73,12 @@
         <div class = "row" class = "button"><button class = "custom_button" id = "op_3" onclick = "check(2)">thing</button></div>
         <div class = "row" class = "button"><button class = "custom_button" id = "op_4" onclick = "check(3)">thing</button></div>
     </div>
+    <div class="row">
+        <button hidden class = "custom_button_2" id = "changeQuestion" onclick="newQuestion()">Generate new question</button>
+    </div>
 </div>
 <script>
-    let options = ["Hydrogen" ,"Helium" ,"Lithium" ,"Beryllium" ,"Boron" ,"Carbon" ,"Nitrogen" ,"Oxygen" ,"Fluorine" ,"Neon" ,"Sodium" ,"Magnesium" ,"Aluminum" ,"Silicon" ,"Phosphorus" ,"Sulfur" ,"Chlorine" ,"Argon" ,"Potassium" ,"Calcium" ,"Scandium" ,"Titanium" ,"Vanadium" ,"Chromium" ,"Manganese" ,"Iron" ,"Cobalt" ,"Nickel" ,"Copper" ,"Zinc" ,"Gallium" ,"Germanium" ,"Arsenic" ,"Selenium" ,"Bromine" ,"Krypton" ,"Rubidium" ,"Strontium" ,"Yttrium" ,"Zirconium" ,"Niobium" ,"Molybdenum" ,"Technetium" ,"Ruthenium" ,"Rhodium" ,"Palladium" ,"Silver" ,"Cadmium" ,"Indium" ,"Tin" ,"Antimony" ,"Tellurium" ,"Iodine" ,"Xenon" ,"Cesium" ,"Barium" ,"Lanthanum" ,"Cerium" ,"Praseodymium" ,"Neodymium" ,"Promethium" ,"Samarium" ,"Europium" ,"Gadolinium" ,"Terbium" ,"Dysprosium" ,"Holmium" ,"Erbium" ,"Thulium" ,"Ytterbium" ,"Lutetium" ,"Hafnium" ,"Tantalum" ,"Tungsten" ,"Rhenium" ,"Osmium" ,"Iridium" ,"Platinum" ,"Gold" ,"Mercury" ,"Thallium" ,"Lead" ,"Bismuth" ,"Polonium" ,"Astatine" ,"Radon" ,"Francium" ,"Radium" ,"Actinium" ,"Thorium" ,"Protactinium" ,"Uranium" ,"Neptunium" ,"Plutonium" ,"Americium" ,"Curium" ,"Berkelium" ,"Californium" ,"Einsteinium" ,"Fermium" ,"Mendelevium" ,"Nobelium" ,"Lawrencium" ,"Rutherfordium" ,"Dubnium" ,"Seaborgium" ,"Bohrium" ,"Hassium" ,"Meitnerium" ,"Darmstadtium" ,"Roentgenium" ,"Copernicium" ,"Nihonium" ,"Flerovium" ,"Moscovium" ,"Livermorium" ,"Tennessine" ,"Oganesson" ];
+    let answerChoices = ["Hydrogen" ,"Helium" ,"Lithium" ,"Beryllium" ,"Boron" ,"Carbon" ,"Nitrogen" ,"Oxygen" ,"Fluorine" ,"Neon" ,"Sodium" ,"Magnesium" ,"Aluminum" ,"Silicon" ,"Phosphorus" ,"Sulfur" ,"Chlorine" ,"Argon" ,"Potassium" ,"Calcium" ,"Scandium" ,"Titanium" ,"Vanadium" ,"Chromium" ,"Manganese" ,"Iron" ,"Cobalt" ,"Nickel" ,"Copper" ,"Zinc" ,"Gallium" ,"Germanium" ,"Arsenic" ,"Selenium" ,"Bromine" ,"Krypton" ,"Rubidium" ,"Strontium" ,"Yttrium" ,"Zirconium" ,"Niobium" ,"Molybdenum" ,"Technetium" ,"Ruthenium" ,"Rhodium" ,"Palladium" ,"Silver" ,"Cadmium" ,"Indium" ,"Tin" ,"Antimony" ,"Tellurium" ,"Iodine" ,"Xenon" ,"Cesium" ,"Barium" ,"Lanthanum" ,"Cerium" ,"Praseodymium" ,"Neodymium" ,"Promethium" ,"Samarium" ,"Europium" ,"Gadolinium" ,"Terbium" ,"Dysprosium" ,"Holmium" ,"Erbium" ,"Thulium" ,"Ytterbium" ,"Lutetium" ,"Hafnium" ,"Tantalum" ,"Tungsten" ,"Rhenium" ,"Osmium" ,"Iridium" ,"Platinum" ,"Gold" ,"Mercury" ,"Thallium" ,"Lead" ,"Bismuth" ,"Polonium" ,"Astatine" ,"Radon" ,"Francium" ,"Radium" ,"Actinium" ,"Thorium" ,"Protactinium" ,"Uranium" ,"Neptunium" ,"Plutonium" ,"Americium" ,"Curium" ,"Berkelium" ,"Californium" ,"Einsteinium" ,"Fermium" ,"Mendelevium" ,"Nobelium" ,"Lawrencium" ,"Rutherfordium" ,"Dubnium" ,"Seaborgium" ,"Bohrium" ,"Hassium" ,"Meitnerium" ,"Darmstadtium" ,"Roentgenium" ,"Copernicium" ,"Nihonium" ,"Flerovium" ,"Moscovium" ,"Livermorium" ,"Tennessine" ,"Oganesson" ];
     let questions = ["_____ is used to reduce the iron pellets into sponge iron, metallic iron that can then be processed to form steel.",
         "_____ is used to provide a pure atmosphere for the manufacturing of fiber optic cables, therefore preventing the formation of air bubbles.",
         "_____ is used to strengthen nerve cell connections in brain regions that are involved in regulating mood, thinking and behavior.",
@@ -170,65 +197,63 @@
         "_____ is used for nothing since its half life is 53 milliseconds.",
         "_____ is used for nothing since its half life is 80 milliseconds.",
         "_____ is used for nothing since its half life is .93 milliseconds."];
-        
-        //-----------Add the following bellow-----------
-        let random;
-        generateQuestion();
-        function generateQuestion() {
-        //----------------------------------------------
-        
-            let key = Math.floor(Math.random()*questions.length);
-            let random = Math.floor(Math.random()*4);
-            document.getElementById("question").innerHTML = questions[key];
-            if(random == 0){
-                document.getElementById("op_1").innerHTML = options[key];
-            }else if(random == 1){
-                document.getElementById("op_2").innerHTML = options[key];
-            }else if(random == 2){
-                document.getElementById("op_3").innerHTML = options[key];
-            }else{
-                document.getElementById("op_4").innerHTML = options[key];
+    let random;
+    generateQuestion();
+    function generateQuestion() {
+        resetButtons();
+        let key = Math.floor(Math.random() * questions.length);
+        let random = Math.floor(Math.random() * 4);
+        altVal(random);
+        document.getElementById("question").innerHTML = questions[key];
+        if (random == 0) {
+            document.getElementById("op_1").innerHTML = answerChoices[key];
+        } else if (random == 1) {
+            document.getElementById("op_2").innerHTML = answerChoices[key];
+        } else if (random == 2) {
+            document.getElementById("op_3").innerHTML = answerChoices[key];
+        } else {
+            document.getElementById("op_4").innerHTML = answerChoices[key];
+        }
+        let list_1 = [];
+        let list_2 = [];
+        for (let i = 0; i < key; i++) {
+            list_1[i] = answerChoices[i];
+        }
+        if ((answerChoices.length - key - 1) > 0) {
+            for (let i = 1; i < (answerChoices.length - key); i++) {
+                list_2[i - 1] = answerChoices[i + key];
             }
-            let list_1 = [];
-            let list_2 = [];
-            for(let i = 0; i < key; i++){
-                list_1[i] = options[i];
-            }
-            if((options.length - key - 1) > 0){
-                for(let i = 1; i < (options.length - key); i++){
-                    list_2[i - 1] = options[i + key];
-                }
-            }
+        }
 
-            let new_list = [];
-            for(let i = 0; i < list_1.length; i++){
-                new_list[i] = list_1[i];
+        let new_list = [];
+        for (let i = 0; i < list_1.length; i++) {
+            new_list[i] = list_1[i];
+        }
+        let j = new_list.length;
+        if (list_2.length > 0) {
+            for (let i = 0; i < list_2.length; i++) {
+                new_list[i + j] = list_2[i];
             }
-            let j = new_list.length;
-            if(list_2.length > 0){
-                for(let i = 0; i < list_2.length; i++){
-                    new_list[i + j] = list_2[i];
-                }
-            }
-            randomize(new_list);
-            if(random == 0){
-                document.getElementById("op_2").innerText = new_list[0];
-                document.getElementById("op_3").innerText = new_list[1];
-                document.getElementById("op_4").innerText = new_list[2];
-            }else if(random == 1){
-                document.getElementById("op_1").innerText = new_list[0];
-                document.getElementById("op_3").innerText = new_list[1];
-                document.getElementById("op_4").innerText = new_list[2];
-            }else if(random== 2){
-                document.getElementById("op_1").innerText = new_list[0];
-                document.getElementById("op_2").innerText = new_list[1];
-                document.getElementById("op_4").innerText = new_list[2];
-            }else{
-                document.getElementById("op_1").innerText = new_list[0];
-                document.getElementById("op_2").innerText = new_list[1];
-                document.getElementById("op_3").innerText = new_list[2];
-            }
-        }//------------Add this specific bracket--------------
+        }
+        randomize(new_list);
+        if (random == 0) {
+            document.getElementById("op_2").innerText = new_list[0];
+            document.getElementById("op_3").innerText = new_list[1];
+            document.getElementById("op_4").innerText = new_list[2];
+        } else if (random == 1) {
+            document.getElementById("op_1").innerText = new_list[0];
+            document.getElementById("op_3").innerText = new_list[1];
+            document.getElementById("op_4").innerText = new_list[2];
+        } else if (random == 2) {
+            document.getElementById("op_1").innerText = new_list[0];
+            document.getElementById("op_2").innerText = new_list[1];
+            document.getElementById("op_4").innerText = new_list[2];
+        } else {
+            document.getElementById("op_1").innerText = new_list[0];
+            document.getElementById("op_2").innerText = new_list[1];
+            document.getElementById("op_3").innerText = new_list[2];
+        }
+    }
 
     function randomize(values) {
         let index = values.length,
@@ -246,13 +271,9 @@
 
         return values;
     }
-    
-    //-----------Add the altVal function-----------
     function altVal(int){
         random = int;
     }
-    //------------------------------------------------
-    
     function check(answer){
         if(random == answer){
             correct(answer);
@@ -286,6 +307,7 @@
             document.getElementById('op_4').style.backgroundColor = '#76ff03';
             document.getElementById('op_4').style.color = 'Black';
         }
+        document.getElementById("changeQuestion").hidden = false;
     }
     function incorrect(int){
         document.getElementById('op_1').style.backgroundColor = 'White';
@@ -310,28 +332,8 @@
             document.getElementById('op_4').style.color = 'White';
         }
     }
-    
-    //-----------Add the functions below-----------
     function newQuestion(){
-    /*------------Delete within this margin-------------
-        document.getElementById("changeQuestion").hidden = true;
-        document.getElementById('op_1').style.backgroundColor = 'White';
-        document.getElementById('op_2').style.backgroundColor = 'White';
-        document.getElementById('op_3').style.backgroundColor = 'White';
-        document.getElementById('op_4').style.backgroundColor = 'White';
-        document.getElementById('op_1').style.color = '#9c27b0';
-        document.getElementById('op_2').style.color = '#9c27b0';
-        document.getElementById('op_3').style.color = '#9c27b0';
-        document.getElementById('op_4').style.color = '#9c27b0';
-        document.getElementById("op_1").disabled = false;
-        document.getElementById("op_2").disabled = false;
-        document.getElementById("op_3").disabled = false;
-        document.getElementById("op_4").disabled = false;
-        -------------------------------------------*/
-        //-------------Add the line below-----------
-         resetButtons(){
-         //-----------------------------------------
-        
+        resetButtons();
         generateQuestion();
     }
     function resetButtons(){
@@ -349,7 +351,6 @@
         document.getElementById("op_3").disabled = false;
         document.getElementById("op_4").disabled = false;
     }
-    //--------------------------------------
     //Color scheme: Orange, light gray, black, purple
     //https://materializecss.com/color.html
 </script>
