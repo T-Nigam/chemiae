@@ -202,14 +202,14 @@
     function generateQuestion() {
         resetButtons();
         let key = Math.floor(Math.random() * questions.length);
-        let random = Math.floor(Math.random() * 4);
-        altVal(random);
+        let num = Math.floor(Math.random() * 4);
+        altVal(num);
         document.getElementById("question").innerHTML = questions[key];
-        if (random == 0) {
+        if (num == 0) {
             document.getElementById("op_1").innerHTML = answerChoices[key];
-        } else if (random == 1) {
+        } else if (num == 1) {
             document.getElementById("op_2").innerHTML = answerChoices[key];
-        } else if (random == 2) {
+        } else if (num == 2) {
             document.getElementById("op_3").innerHTML = answerChoices[key];
         } else {
             document.getElementById("op_4").innerHTML = answerChoices[key];
@@ -236,15 +236,15 @@
             }
         }
         randomize(new_list);
-        if (random == 0) {
+        if (num == 0) {
             document.getElementById("op_2").innerText = new_list[0];
             document.getElementById("op_3").innerText = new_list[1];
             document.getElementById("op_4").innerText = new_list[2];
-        } else if (random == 1) {
+        } else if (num == 1) {
             document.getElementById("op_1").innerText = new_list[0];
             document.getElementById("op_3").innerText = new_list[1];
             document.getElementById("op_4").innerText = new_list[2];
-        } else if (random == 2) {
+        } else if (num == 2) {
             document.getElementById("op_1").innerText = new_list[0];
             document.getElementById("op_2").innerText = new_list[1];
             document.getElementById("op_4").innerText = new_list[2];
