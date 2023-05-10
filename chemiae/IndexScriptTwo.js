@@ -1,6 +1,7 @@
 const firebaseConfig = {
     apiKey: "AIzaSyC5P4An8O-A-3ZSme0fvqEV8lJsS2dPh40",
     authDomain: "chemiae.firebaseapp.com",
+    databaseURL: "https://chemiae-default-rtdb.firebaseio.com",
     projectId: "chemiae",
     storageBucket: "chemiae.appspot.com",
     messagingSenderId: "942176952217",
@@ -13,7 +14,18 @@ const firebaseConfig = {
     let correctAnswer = "";
     let question = "";
     const app = firebase.initializeApp(firebaseConfig);
-    auth = firebase.auth(app);
+    const auth = firebase.auth(app);
+    const database = firebase.database(app);
+   
+
+
+    document.getElementById("signUp").addEventListener('click', createAccount);
+    
+    document.getElementById("login").addEventListener('click', loginUser);
+
+    document.getElementById("signOut").addEventListener('click', reset);
+
+    document.getElementById('test').addEventListener('click', testOpen);
 
     function signUpOpen(){
         document.getElementById("signUpPage").classList.toggle("active");
@@ -24,6 +36,7 @@ const firebaseConfig = {
     }
 
     function testOpen(){
+        newQuestion();
         document.getElementById("testPage").classList.toggle("active");
     }
 
@@ -58,7 +71,7 @@ const firebaseConfig = {
         let password = document.getElementById("passwordSign").value;
         console.log(password);
         auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+        .then((userCredenAtial) => {
                 // Signed in 
                 uid = userCredential.user.uid;
                 document.getElementById("before").className = "hide"; 
@@ -68,6 +81,14 @@ const firebaseConfig = {
                 console.log(userCredential);
                 console.log(uid);
                 signUpOpen();
+                users = database.ref("users")
+                set(push(users));
+                for(var i = 1; i< answerChoices.length;i++){
+                    database.child(uid).child(answerChoices[i]).push();
+                    for(var x = 1; x<5;x++){
+                        database.child(uid).child(answerChoices[i]).child(x).push();
+                    }
+                }
                 // ...
             })
             .catch((error) => {
@@ -77,32 +98,159 @@ const firebaseConfig = {
             });  
     }
 
-    function random(){
-        const answer = Math.floor(random()*118);
-        correctAnswer= answer;
-        let options = [];
-        for(var i = 0; i<4; i++){
-            const choice = Math.floor(random()*118);
-            if(choice != answer){
-                for(var x = 0; x<options.length; x++){
-                    if(choice == options[x] || options[x] == null){}else{
-                        options.push(choice);
-                    }
-                }
+
+    let random;
+    function generateQuestion() {
+        resetButtons();
+        let key = Math.floor(Math.random() * questions.length);
+        let num = Math.floor(Math.random() * 4);
+        altVal(num);
+        document.getElementById("question").innerHTML = questions[key];
+        if (num == 0) {
+            document.getElementById("op_1").innerHTML = answerChoices[key];
+        } else if (num == 1) {
+            document.getElementById("op_2").innerHTML = answerChoices[key];
+        } else if (num == 2) {
+            document.getElementById("op_3").innerHTML = answerChoices[key];
+        } else {
+            document.getElementById("op_4").innerHTML = answerChoices[key];
+        }
+        let list_1 = [];
+        let list_2 = [];
+        for (let i = 0; i < key; i++) {
+            list_1[i] = answerChoices[i];
+        }
+        if ((answerChoices.length - key - 1) > 0) {
+            for (let i = 1; i < (answerChoices.length - key); i++) {
+                list_2[i - 1] = answerChoices[i + key];
             }
         }
-        return options;
+
+        let new_list = [];
+        for (let i = 0; i < list_1.length; i++) {
+            new_list[i] = list_1[i];
+        }
+        let j = new_list.length;
+        if (list_2.length > 0) {
+            for (let i = 0; i < list_2.length; i++) {
+                new_list[i + j] = list_2[i];
+            }
+        }
+        randomize(new_list);
+        if (num == 0) {
+            document.getElementById("op_2").innerText = new_list[0];
+            document.getElementById("op_3").innerText = new_list[1];
+            document.getElementById("op_4").innerText = new_list[2];
+        } else if (num == 1) {
+            document.getElementById("op_1").innerText = new_list[0];
+            document.getElementById("op_3").innerText = new_list[1];
+            document.getElementById("op_4").innerText = new_list[2];
+        } else if (num == 2) {
+            document.getElementById("op_1").innerText = new_list[0];
+            document.getElementById("op_2").innerText = new_list[1];
+            document.getElementById("op_4").innerText = new_list[2];
+        } else {
+            document.getElementById("op_1").innerText = new_list[0];
+            document.getElementById("op_2").innerText = new_list[1];
+            document.getElementById("op_3").innerText = new_list[2];
+        }
     }
 
-    function setAnswers(){
-        let options = random();
-        var newText = [document.getElementsByClassName("one")[0], document.getElementsByClassName("two")[0], document.getElementsByClassName("three")[0], document.getElementsByClassName("four")[0]];
-        let chosen = [];
-        for(var i = 0; i<4; i++){
-            let random = Math.floor(random()*4 - 1)
-            if(chosen[i] == null ){}
+    function randomize(values) {
+        let index = values.length,
+            randomIndex;
+
+        // While there remain elements to shuffle.
+        while (index != 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * index);
+            index--;
+
+            // And swap it with the current element.
+            [values[index], values[randomIndex]] = [values[randomIndex], values[index]];
         }
-        testOpen();
+
+        return values;
+    }
+    function altVal(int){
+        random = int;
+    }
+    function check(answer){
+        if(random == answer){
+            correct(answer);
+        }else{
+            incorrect(answer);
+        }
+    }
+    function correct(int){
+        document.getElementById('op_1').style.backgroundColor = 'Red';
+        document.getElementById('op_2').style.backgroundColor = 'Red';
+        document.getElementById('op_3').style.backgroundColor = 'Red';
+        document.getElementById('op_4').style.backgroundColor = 'Red';
+        document.getElementById('op_1').style.color = 'White';
+        document.getElementById('op_2').style.color = 'White';
+        document.getElementById('op_3').style.color = 'White';
+        document.getElementById('op_4').style.color = 'White';
+        document.getElementById("op_1").disabled = true;
+        document.getElementById("op_2").disabled = true;
+        document.getElementById("op_3").disabled = true;
+        document.getElementById("op_4").disabled = true;
+        if(int === 0){
+            document.getElementById('op_1').style.backgroundColor = '#76ff03';
+            document.getElementById('op_1').style.color = 'Black';
+        }else if(int === 1){
+            document.getElementById('op_2').style.backgroundColor = '#76ff03';
+            document.getElementById('op_2').style.color = 'Black';
+        }else if(int === 2){
+            document.getElementById('op_3').style.backgroundColor = '#76ff03';
+            document.getElementById('op_3').style.color = 'Black';
+        }else{
+            document.getElementById('op_4').style.backgroundColor = '#76ff03';
+            document.getElementById('op_4').style.color = 'Black';
+        }
+        document.getElementById("next").hidden = false;
+    }
+    function incorrect(int){
+        document.getElementById('op_1').style.backgroundColor = 'White';
+        document.getElementById('op_2').style.backgroundColor = 'White';
+        document.getElementById('op_3').style.backgroundColor = 'White';
+        document.getElementById('op_4').style.backgroundColor = 'White';
+        document.getElementById('op_1').style.color = '#9c27b0';
+        document.getElementById('op_2').style.color = '#9c27b0';
+        document.getElementById('op_3').style.color = '#9c27b0';
+        document.getElementById('op_4').style.color = '#9c27b0';
+        if(int === 0){
+            document.getElementById('op_1').style.backgroundColor = 'Red';
+            document.getElementById('op_1').style.color = 'White';
+        }else if(int === 1){
+            document.getElementById('op_2').style.backgroundColor = 'Red';
+            document.getElementById('op_2').style.color = 'White';
+        }else if(int === 2){
+            document.getElementById('op_3').style.backgroundColor = 'Red';
+            document.getElementById('op_3').stylecolor = 'White';
+        }else{
+            document.getElementById('op_4').style.backgroundColor = 'Red';
+            document.getElementById('op_4').style.color = 'White';
+        }
+    }
+    function newQuestion(){
+        resetButtons();
+        generateQuestion();
+    }
+    function resetButtons(){
+        document.getElementById("next").hidden = true;
+        document.getElementById('op_1').style.backgroundColor = 'White';
+        document.getElementById('op_2').style.backgroundColor = 'White';
+        document.getElementById('op_3').style.backgroundColor = 'White';
+        document.getElementById('op_4').style.backgroundColor = 'White';
+        document.getElementById('op_1').style.color = '#9c27b0';
+        document.getElementById('op_2').style.color = '#9c27b0';
+        document.getElementById('op_3').style.color = '#9c27b0';
+        document.getElementById('op_4').style.color = '#9c27b0';
+        document.getElementById("op_1").disabled = false;
+        document.getElementById("op_2").disabled = false;
+        document.getElementById("op_3").disabled = false;
+        document.getElementById("op_4").disabled = false;
     }
 
     function reset(){
@@ -111,18 +259,10 @@ const firebaseConfig = {
         document.getElementById("before").className = "row"; 
         document.getElementById("after").className = "hide";
     }
-    
-    document.getElementById("signUp").addEventListener('click',createAccount);
-    
-    document.getElementById("login").addEventListener('click', loginUser);
-
-    document.getElementById("signOut").addEventListener('click', reset);
-
-    document.getElementById('test').addEventListener('click', setAnswers);
 
     
-    let awnserChoices = ["blank","Hydrogen" ,"Helium" ,"Lithium" ,"Beryllium" ,"Boron" ,"Carbon" ,"Nitrogen" ,"Oxygen" ,"Fluorine" ,"Neon" ,"Sodium" ,"Magnesium" ,"Aluminum" ,"Silicon" ,"Phosphorus" ,"Sulfur" ,"Chlorine" ,"Argon" ,"Potassium" ,"Calcium" ,"Scandium" ,"Titanium" ,"Vanadium" ,"Chromium" ,"Manganese" ,"Iron" ,"Cobalt" ,"Nickel" ,"Copper" ,"Zinc" ,"Gallium" ,"Germanium" ,"Arsenic" ,"Selenium" ,"Bromine" ,"Krypton" ,"Rubidium" ,"Strontium" ,"Yttrium" ,"Zirconium" ,"Niobium" ,"Molybdenum" ,"Technetium" ,"Ruthenium" ,"Rhodium" ,"Palladium" ,"Silver" ,"Cadmium" ,"Indium" ,"Tin" ,"Antimony" ,"Tellurium" ,"Iodine" ,"Xenon" ,"Cesium" ,"Barium" ,"Lanthanum" ,"Cerium" ,"Praseodymium" ,"Neodymium" ,"Promethium" ,"Samarium" ,"Europium" ,"Gadolinium" ,"Terbium" ,"Dysprosium" ,"Holmium" ,"Erbium" ,"Thulium" ,"Ytterbium" ,"Lutetium" ,"Hafnium" ,"Tantalum" ,"Tungsten" ,"Rhenium" ,"Osmium" ,"Iridium" ,"Platinum" ,"Gold" ,"Mercury" ,"Thallium" ,"Lead" ,"Bismuth" ,"Polonium" ,"Astatine" ,"Radon" ,"Francium" ,"Radium" ,"Actinium" ,"Thorium" ,"Protactinium" ,"Uranium" ,"Neptunium" ,"Plutonium" ,"Americium" ,"Curium" ,"Berkelium" ,"Californium" ,"Einsteinium" ,"Fermium" ,"Mendelevium" ,"Nobelium" ,"Lawerencium" ,"Rutherfordium" ,"Dubnium" ,"Seaborgium" ,"Bohrium" ,"Hassium" ,"Meitnerium" ,"Darmstadtium" ,"Roentgenium" ,"Copernicium" ,"Nihonium" ,"Flerovium" ,"Moscovium" ,"Livermorium" ,"Tennessine" ,"Oganesson" ];
-    let questions = ["blank", "_____ is used to reduce the iron pellets into sponge iron, metallic iron that can then be processed to form steel.",
+    let answerChoices = ["Hydrogen" ,"Helium" ,"Lithium" ,"Beryllium" ,"Boron" ,"Carbon" ,"Nitrogen" ,"Oxygen" ,"Fluorine" ,"Neon" ,"Sodium" ,"Magnesium" ,"Aluminum" ,"Silicon" ,"Phosphorus" ,"Sulfur" ,"Chlorine" ,"Argon" ,"Potassium" ,"Calcium" ,"Scandium" ,"Titanium" ,"Vanadium" ,"Chromium" ,"Manganese" ,"Iron" ,"Cobalt" ,"Nickel" ,"Copper" ,"Zinc" ,"Gallium" ,"Germanium" ,"Arsenic" ,"Selenium" ,"Bromine" ,"Krypton" ,"Rubidium" ,"Strontium" ,"Yttrium" ,"Zirconium" ,"Niobium" ,"Molybdenum" ,"Technetium" ,"Ruthenium" ,"Rhodium" ,"Palladium" ,"Silver" ,"Cadmium" ,"Indium" ,"Tin" ,"Antimony" ,"Tellurium" ,"Iodine" ,"Xenon" ,"Cesium" ,"Barium" ,"Lanthanum" ,"Cerium" ,"Praseodymium" ,"Neodymium" ,"Promethium" ,"Samarium" ,"Europium" ,"Gadolinium" ,"Terbium" ,"Dysprosium" ,"Holmium" ,"Erbium" ,"Thulium" ,"Ytterbium" ,"Lutetium" ,"Hafnium" ,"Tantalum" ,"Tungsten" ,"Rhenium" ,"Osmium" ,"Iridium" ,"Platinum" ,"Gold" ,"Mercury" ,"Thallium" ,"Lead" ,"Bismuth" ,"Polonium" ,"Astatine" ,"Radon" ,"Francium" ,"Radium" ,"Actinium" ,"Thorium" ,"Protactinium" ,"Uranium" ,"Neptunium" ,"Plutonium" ,"Americium" ,"Curium" ,"Berkelium" ,"Californium" ,"Einsteinium" ,"Fermium" ,"Mendelevium" ,"Nobelium" ,"Lawerencium" ,"Rutherfordium" ,"Dubnium" ,"Seaborgium" ,"Bohrium" ,"Hassium" ,"Meitnerium" ,"Darmstadtium" ,"Roentgenium" ,"Copernicium" ,"Nihonium" ,"Flerovium" ,"Moscovium" ,"Livermorium" ,"Tennessine" ,"Oganesson" ];
+    let questions = ["_____ is used to reduce the iron pellets into sponge iron, metallic iron that can then be processed to form steel.",
     "_____ is used to provide a pure atmosphere for the manufacturing of fiber optic cables, therefore preventing the formation of air bubbles.",
     "_____ is used to strengthen nerve cell connections in brain regions that are involved in regulating mood, thinking and behavior.",
     "_____ is used to strengthen the thermal and electrical conductivity of copper or nickel",
@@ -240,6 +380,9 @@ const firebaseConfig = {
     "_____ is used for nothing since its half life is 53 milliseconds.",
     "_____ is used for nothing since its half life is 80 milliseconds.",
     "_____ is used for nothing since its half life is .93 milliseconds."];
+    
+
+    
     
 
     
