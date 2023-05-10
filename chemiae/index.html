@@ -78,7 +78,7 @@
                         <button id ="Login" class = "btn waves-effect waves-deep purple" onclick="logInOpen();">Log in</button>
                     </div>
             </div>
-            <div class = "row" id = "after">
+            <div class = "hide" id = "after">
                 <h8>Chemiae by Educatio</h8>
                     <h10>&nbsp</h10>
                     <div class = "right">
@@ -270,11 +270,31 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-   
     <style>
-        input[type=radio] {
-            accent-color: green;
-         }
+        .custom_button{
+            border: 3px #444444 solid;
+            border-radius: 20px;
+            -moz-border-radius: 10px;
+            background: white;
+            color: #9c27b0;
+            font-size: 20px;
+            width: 142px;
+            height: 32px;
+            margin: auto;
+        }
+        .custom_button:hover{
+            border: 3px #000000 solid;
+            background: gray;
+            color: white;
+        }
+        .custom_button:focus{
+            border: 3px #444444 solid;
+            border-radius: 20px;
+            -moz-border-radius: 10px;
+            background: white;
+            color: red;
+            margin: auto;
+        }
     </style>
     <body>
         <div class="popup" id="logInPage">
@@ -327,45 +347,19 @@
         <div class="popup" id="testPage">
             <div class = "overlay"></div>
             <div class="content">
-                <div class="close-btn" onclick="testOpen();">&times</div>
+                <div class="close-btn" onclick="testOpen(); ">&times</div>
                 <div class = "container">
-                    <h5>Testing for quiz</h5>
-                    <h6>Who is the best</h6>
-                    <form action="#">
-                        <p>
-                          <label>
-                            <input name="group1" type="radio" checked />
-                            <span class = "one"></span>
-                          </label>
-                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "1">
-                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "w">
-                        </p>
-                        <p>
-                            <label>
-                                <input name="group1" type="radio" checked />
-                                <span class = "two"></span>
-                            </label>
-                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "2">
-                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "x">
-                        </p>
-                        <p>
-                            <label>
-                                <input name="group1" type="radio" checked />
-                                <span class = "three"></span>
-                            </label>
-                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "3">
-                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "y">
-                        </p>
-                        <p>
-                            <label>
-                                <input name="group1" type="radio" checked />
-                                <span class = "four"></span>
-                            </label>
-                            <img src = "images/checkmark.png" class = "hide" width = "10" height = "10" id = "4">
-                            <img src = "images/wrong.png" class = "hide" width = "10" height = "10" id = "z">
-                        </p>
-                    <div class="row">
-                        
+                    <div class = "container">
+                        <div class = "form">
+                            <h5 id = "question"></h5>
+                            <div class = "row"><button class = "custom_button" id = "op_1" onclick = "check(0)">thing</button></div>
+                            <div class = "row"><button class = "custom_button" id = "op_2" onclick = "check(1)">thing</button></div>
+                            <div class = "row"><button class = "custom_button" id = "op_3" onclick = "check(2)">thing</button></div>
+                            <div class = "row"><button class = "custom_button" id = "op_4" onclick = "check(3)">thing</button></div>
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <button id = "next" class = "btn waves-effect waves-light amber darken-4" onclick = "newQuestion();" >Next Question</button>
                     </div>
                 </div>
             </div>
@@ -374,6 +368,8 @@
     </body>
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
     <SCRIPT src = "IndexScriptTwo.js"></SCRIPT>
 </html>
+
 
