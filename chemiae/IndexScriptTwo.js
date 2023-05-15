@@ -16,6 +16,7 @@ const firebaseConfig = {
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth(app);
     const database = firebase.database(app);
+    const storage = firebase.storage(app);
    
 
 
@@ -71,7 +72,7 @@ const firebaseConfig = {
         let password = document.getElementById("passwordSign").value;
         console.log(password);
         auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredenAtial) => {
+        .then((userCredential) => {
                 // Signed in 
                 uid = userCredential.user.uid;
                 document.getElementById("before").className = "hide"; 
@@ -81,14 +82,11 @@ const firebaseConfig = {
                 console.log(userCredential);
                 console.log(uid);
                 signUpOpen();
-                users = database.ref("users")
-                set(push(users));
-                for(var i = 1; i< answerChoices.length;i++){
-                    database.child(uid).child(answerChoices[i]).push();
-                    for(var x = 1; x<5;x++){
-                        database.child(uid).child(answerChoices[i]).child(x).push();
-                    }
-                }
+                pushUsers = database.set({
+                   email: email,
+                   uid: uid
+                });
+                
                 // ...
             })
             .catch((error) => {
@@ -380,6 +378,8 @@ const firebaseConfig = {
     "_____ is used for nothing since its half life is 53 milliseconds.",
     "_____ is used for nothing since its half life is 80 milliseconds.",
     "_____ is used for nothing since its half life is .93 milliseconds."];
+    
+
     
 
     
