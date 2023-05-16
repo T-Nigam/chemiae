@@ -16,7 +16,6 @@ const firebaseConfig = {
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth(app);
     const database = firebase.database(app);
-    const storage = firebase.storage(app);
    
 
 
@@ -82,11 +81,19 @@ const firebaseConfig = {
                 console.log(userCredential);
                 console.log(uid);
                 signUpOpen();
-                pushUsers = database.set({
+                database.ref("users/"+uid).set({
                    email: email,
-                   uid: uid
+                   key: password
                 });
                 
+                for(var i = 1; i<answerChoices.length;i++){
+                    database.ref("users/"+uid+"/"+answerChoices[i]).set({
+                        one:"",
+                        two:"",
+                        three:"",
+                        four:""
+                     });
+                }
                 // ...
             })
             .catch((error) => {
@@ -206,6 +213,7 @@ const firebaseConfig = {
             document.getElementById('op_4').style.backgroundColor = '#76ff03';
             document.getElementById('op_4').style.color = 'Black';
         }
+        
         document.getElementById("next").hidden = false;
     }
     function incorrect(int){
@@ -378,11 +386,6 @@ const firebaseConfig = {
     "_____ is used for nothing since its half life is 53 milliseconds.",
     "_____ is used for nothing since its half life is 80 milliseconds.",
     "_____ is used for nothing since its half life is .93 milliseconds."];
-    
-
-    
-
-    
     
 
     
