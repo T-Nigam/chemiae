@@ -273,8 +273,8 @@
     <style>
         .custom_button{
             border: 3px #444444 solid;
-            border-radius: 20px;
-            -moz-border-radius: 10px;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
             background: white;
             color: #9c27b0;
             font-size: 20px;
@@ -289,12 +289,14 @@
         }
         .custom_button:focus{
             border: 3px #444444 solid;
-            border-radius: 20px;
-            -moz-border-radius: 10px;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
             background: white;
             color: red;
             margin: auto;
         }
+
+        .hide{display:none;}
     </style>
     <body>
         <div class="popup" id="logInPage">
@@ -347,7 +349,7 @@
         <div class="popup" id="testPage">
             <div class = "overlay"></div>
             <div class="content">
-                <div class="close-btn" onclick="testOpen(); ">&times</div>
+                <div class="close-btn" onclick="testOpen();">&times</div>
                 <div class = "container">
                     <div class = "container">
                         <div class = "form">
@@ -358,8 +360,8 @@
                             <div class = "row"><button class = "custom_button" id = "op_4" onclick = "check(3)">thing</button></div>
                         </div>
                     </div>
-                    <div class = "row">
-                        <button id = "next" class = "btn waves-effect waves-light amber darken-4" onclick = "newQuestion();" >Next Question</button>
+                    <div id = "value" class = "row">
+                        <button  id = "next" class = "custom_button"  onclick = "newQuestion();" >Next</button>
                     </div>
                 </div>
             </div>
