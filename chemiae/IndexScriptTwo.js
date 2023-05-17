@@ -16,7 +16,7 @@ const firebaseConfig = {
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth(app);
     const database = firebase.database(app);
-   
+    var counter;
 
 
     document.getElementById("signUp").addEventListener('click', createAccount);
@@ -181,9 +181,72 @@ const firebaseConfig = {
         random = int;
     }
     function check(answer){
+        counter++;
         if(random == answer){
+            if(counter = 1){
+                database.ref('users/' + uid +"/" +answerChoices[random]).once('value').then((snapshot) => {
+                    var one = (snapshot.val().one);
+                    var two = (snapshot.val().two);
+                    var three = (snapshot.val().three);
+                    var four = (snapshot.val().four)
+                    if(one = ""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            one:"correct"
+                        });
+                    }else if(one != "" && two != ""&&three!=""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            four: three,
+                            three:two,
+                            two: one,
+                            one:""
+                        });
+                    }else if(one != "" && two != ""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            three:two,
+                            two: one,
+                            one:""
+                        });
+                    }else if(one != ""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            two: one,
+                            one:""
+                        });
+                    }
+                 });
+            }
             correct(answer);
         }else{
+            if(counter == 1){
+                database.ref('users/' + uid +"/" +answerChoices[random]).once('value').then((snapshot) => {
+                    var one = (snapshot.val().one);
+                    var two = (snapshot.val().two);
+                    var three = (snapshot.val().three);
+                    var four = (snapshot.val().four)
+                    if(one = ""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            one:"incorrect"
+                        });
+                    }else if(one != "" && two != ""&&three!=""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            four: three,
+                            three:two,
+                            two: one,
+                            one:""
+                        });
+                    }else if(one != "" && two != ""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            three:two,
+                            two: one,
+                            one:""
+                        });
+                    }else if(one != ""){
+                        database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                            two: one,
+                            one:""
+                        });
+                    }
+                });
+            }
             incorrect(answer);
         }
     }
@@ -240,6 +303,7 @@ const firebaseConfig = {
         }
     }
     function newQuestion(){
+        counter=0
         resetButtons();
         generateQuestion();
     }
@@ -386,6 +450,9 @@ const firebaseConfig = {
     "_____ is used for nothing since its half life is 53 milliseconds.",
     "_____ is used for nothing since its half life is 80 milliseconds.",
     "_____ is used for nothing since its half life is .93 milliseconds."];
+    
+
+    
     
 
     
