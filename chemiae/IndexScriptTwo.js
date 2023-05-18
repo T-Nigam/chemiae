@@ -62,6 +62,7 @@ const firebaseConfig = {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
+                M.toast(errorMessage);
             });
     }
     
@@ -100,6 +101,7 @@ const firebaseConfig = {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
+                M.toast({html: errorMessage});
             });  
     }
 
@@ -206,24 +208,24 @@ const firebaseConfig = {
         if(random == answer){
             if(counter = 1){
                 if(a == null||a==""){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).push({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         one:"correct"
                     });
                 }else if((a != null && b != null &&c!= null)||(a != '' && b != '' &&c!= '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         four: three,
                         three:two,
                         two: one,
                         one:"correct"
                     });
                 }else if((a != null && b != null)||(a != '' && b != '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         three:two,
                         two: one,
                         one:"correct"
                     });
                 }else if(a != null|| a!=''){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         two: one,
                         one:"correct"
                     });
@@ -231,62 +233,53 @@ const firebaseConfig = {
             }
             correct(answer);
             database.ref('users/' + uid + '/'+answerChoices[random]+"/one").on('value', (snapshot) => {
-                a = snapshot.val();
                 console.log(a);
             });
             database.ref('users/' + uid + '/'+answerChoices[random]+"/two").on('value', (snapshot) => {
-                b = snapshot.val();
                 console.log(b);
             });
             database.ref('users/' + uid + '/'+answerChoices[random]+"/three").on('value', (snapshot) => {
-                c = snapshot.val();
                 console.log(c);
             });
             database.ref('users/' + uid + '/'+answerChoices[random]+"/four").on('value', (snapshot) => {
-                d = snapshot.val();
                 console.log(d);
             });
         }else{
             if(counter == 1){
                 if(a == null||a==""){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).push({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         one:"incorrect"
                     });
                 }else if((a != null && b != null &&c!= null)||(a != '' && b != '' &&c!= '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         four: three,
                         three:two,
-                        two: one,
+                        two: a,
                         one:"incorrect"
                     });
                 }else if((a != null && b != null)||(a != '' && b != '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         three:two,
                         two: one,
                         one:"incorrect"
                     });
                 }else if(a != null|| a!=''){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).set({
+                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
                         two: one,
                         one:"incorrect"
                     });
                 }
             }
-            correct(answer);
             database.ref('users/' + uid + '/'+answerChoices[random]+"/one").on('value', (snapshot) => {
-                a = snapshot.val();
                 console.log(a);
             });
             database.ref('users/' + uid + '/'+answerChoices[random]+"/two").on('value', (snapshot) => {
-                b = snapshot.val();
                 console.log(b);
             });
             database.ref('users/' + uid + '/'+answerChoices[random]+"/three").on('value', (snapshot) => {
-                c = snapshot.val();
                 console.log(c);
             });
             database.ref('users/' + uid + '/'+answerChoices[random]+"/four").on('value', (snapshot) => {
-                d = snapshot.val();
                 console.log(d);
             });
             incorrect(answer);
@@ -494,8 +487,3 @@ const firebaseConfig = {
     "_____ is used for nothing since its half life is 53 milliseconds.",
     "_____ is used for nothing since its half life is 80 milliseconds.",
     "_____ is used for nothing since its half life is .93 milliseconds."];
-
-    
-    
-
-    
