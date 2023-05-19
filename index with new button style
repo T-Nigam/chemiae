@@ -414,6 +414,19 @@
   </div>
 </div>
 <script>
+/*
+ Alkali - style="background-color:#d32f2f;" 
+ alkaline - style="background-color:#ff8f00;" 
+ Lanthanide - style="background-color:#80deea;"
+ actinide - style="background-color:#69f0ae;"
+ trans metal - style="background-color:#ffeb3b;"
+ post-trans metal - style="background-color:#64dd17;"
+ metalloid - style="background-color:#03a9f4;"
+ polyatomic metal - style="background-color:#01579b;"
+ diatomic metal - style="background-color:#64ffda;"
+ noble gas - style="background-color:#aa00ff;"
+ unknown properties - style="background-color:#424242;"
+*/
   let id = 0;
 
   let h1 = document.getElementById("name");
