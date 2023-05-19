@@ -57,12 +57,13 @@ const firebaseConfig = {
                 console.log(uid);
                 logInOpen();
                 // ...
+
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
-                M.toast(errorMessage);
+                M.toast({html:errorMessage});
             });
     }
     
@@ -84,10 +85,11 @@ const firebaseConfig = {
                 signUpOpen();
                 database.ref("users/"+uid).set({
                    email: email,
-                   key: password
+                   key: password,
+                   mastered: 0
                 });
                 
-                for(var i = 1; i<answerChoices.length;i++){
+                for(var i = 0; i<answerChoices.length;i++){
                     database.ref("users/"+uid+"/"+answerChoices[i]).set({
                         one:"",
                         two:"",
@@ -105,16 +107,16 @@ const firebaseConfig = {
             });  
     }
 
-
+    let key;
     let random;
     function generateQuestion() {
         resetButtons();
-        let key = Math.floor(Math.random() * questions.length);
+        key = Math.floor(Math.random() * questions.length);
         let num = Math.floor(Math.random() * 4);
         altVal(num);
         document.getElementById("question").innerHTML = questions[key];
         if (num == 0) {
-            document.getElementById("op_1").innerHTML = answerChoices[key];
+            document.getElementById("op_1").innerHTML = answerChoices[key ];
         } else if (num == 1) {
             document.getElementById("op_2").innerHTML = answerChoices[key];
         } else if (num == 2) {
@@ -189,104 +191,105 @@ const firebaseConfig = {
         var b;
         var c;
         var d;
-        database.ref('users/' + uid + '/'+answerChoices[random]+"/one").on('value', (snapshot) => {
+        database.ref('users/' + uid + '/'+answerChoices[key]+"/one").on('value', (snapshot) => {
             a = snapshot.val();
             console.log(a);
         });
-        database.ref('users/' + uid + '/'+answerChoices[random]+"/two").on('value', (snapshot) => {
+        database.ref('users/' + uid + '/'+answerChoices[key]+"/two").on('value', (snapshot) => {
             b = snapshot.val();
             console.log(b);
         });
-        database.ref('users/' + uid + '/'+answerChoices[random]+"/three").on('value', (snapshot) => {
+        database.ref('users/' + uid + '/'+answerChoices[key]+"/three").on('value', (snapshot) => {
             c = snapshot.val();
             console.log(c);
         });
-        database.ref('users/' + uid + '/'+answerChoices[random]+"/four").on('value', (snapshot) => {
+        database.ref('users/' + uid + '/'+answerChoices[key]+"/four").on('value', (snapshot) => {
             d = snapshot.val();
             console.log(d);
         });
         if(random == answer){
-            if(counter = 1){
+            if(counter == 1){
                 if(a == null||a==""){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
                         one:"correct"
                     });
                 }else if((a != null && b != null &&c!= null)||(a != '' && b != '' &&c!= '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
-                        four: three,
-                        three:two,
-                        two: one,
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
+                        four: c,
+                        three:b,
+                        two: a,
                         one:"correct"
                     });
                 }else if((a != null && b != null)||(a != '' && b != '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
-                        three:two,
-                        two: one,
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
+                        three:b,
+                        two: a,
                         one:"correct"
                     });
                 }else if(a != null|| a!=''){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
-                        two: one,
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
+                        two: a,
                         one:"correct"
                     });
                 }
             }
             correct(answer);
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/one").on('value', (snapshot) => {
-                console.log(a);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/one").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/two").on('value', (snapshot) => {
-                console.log(b);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/two").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/three").on('value', (snapshot) => {
-                console.log(c);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/three").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/four").on('value', (snapshot) => {
-                console.log(d);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/four").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
         }else{
             if(counter == 1){
                 if(a == null||a==""){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
                         one:"incorrect"
                     });
                 }else if((a != null && b != null &&c!= null)||(a != '' && b != '' &&c!= '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
-                        four: three,
-                        three:two,
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
+                        four: c,
+                        three:b,
                         two: a,
                         one:"incorrect"
                     });
                 }else if((a != null && b != null)||(a != '' && b != '')){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
-                        three:two,
-                        two: one,
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
+                        three:b,
+                        two: a,
                         one:"incorrect"
                     });
                 }else if(a != null|| a!=''){
-                    database.ref('users/' + uid +"/" +answerChoices[random]).update({
-                        two: one,
+                    database.ref('users/' + uid +"/" +answerChoices[key]).update({
+                        two: a,
                         one:"incorrect"
                     });
                 }
             }
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/one").on('value', (snapshot) => {
-                console.log(a);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/one").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/two").on('value', (snapshot) => {
-                console.log(b);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/two").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/three").on('value', (snapshot) => {
-                console.log(c);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/three").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
-            database.ref('users/' + uid + '/'+answerChoices[random]+"/four").on('value', (snapshot) => {
-                console.log(d);
+            database.ref('users/' + uid + '/'+answerChoices[key]+"/four").on('value', (snapshot) => {
+                console.log(snapshot.val());
             });
             incorrect(answer);
         }
-
-
     }
+
+     
+
     function correct(int){
         document.getElementById('op_1').style.backgroundColor = 'Red';
         document.getElementById('op_2').style.backgroundColor = 'Red';
