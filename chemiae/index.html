@@ -64,9 +64,133 @@
 
         .hide{display:none;}
     </style>
+     <style>
+        .hi {
+          padding: 0px 0px 0px 67px;
+        }
+        .popup  .overlay{
+          position:fixed;
+          top:0px;
+          left: 0px;
+          width:100vw;
+          height: 100vh;
+          background: rgba(0,0,0,0.7);
+          z-index: 1;
+          display: none;
+        }
+        .popup .content{
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%)  scale(0);
+          background: #fff;
+          width: 600px;
+          height: 500px;
+          z-index:2;
+          text-align: center;
+          padding:20px;
+          box-sizing: border-box;
+        }
+        .popup .close-btn{
+          position: absolute;
+          right: 20px;
+          top:20px;
+          width:30px;
+          height: 30px;
+          background: #222;
+          color: #fff;
+          font-size: 25px;
+          font-weight: 600;
+          line-height: 30px;
+          text-align: center;
+          border-radius: 50%;
+        }
+        .popup.active .overlay{
+          display: block;
+        }
     
+        .popup.active .content{
+          transition: all 300ms ease-in-out;
+          transform:translate(-50%,-50%)scale(1);
+        }
+    
+        .hide{display:none;}
+    
+        .new_button{
+          border: 3px Black solid;
+          border-radius: 10px;
+          -moz-border-radius: 10px;
+          background: white;
+          width: 67px;
+          height: 67px;
+          margin: auto;
+        }
+        .new_button .symbol{
+          position: relative;
+          top: -8px;
+          width: 100%;
+          text-align: center;
+          font-size: 20px;
+          color: black;
+        }
+        .new_button .atom{
+          position: relative;
+          top: -2px;
+          left: -18px;
+          font-size: 13px;
+        }
+        .new_button .mass{
+          position: relative;
+          top: -16px;
+          left: 12px;
+          font-size: 10px;
+        }
+        .new_button .mass2{
+          position: relative;
+          top: -16px;
+          left: 16px;
+          font-size: 10px;
+        }
+        .new_button .name{
+          position: relative;
+          top: -3px;
+          right: 0;
+          font-size: 8px;
+        }
+      </style>
+      <style>
+        .my_button{
+            border: 3px #444444 solid;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: white;
+            color: #9c27b0;
+            font-size: 15px;
+            width: 120px;
+            height: 32px;
+            margin: auto;
+        }
+        .my_button:hover{
+            border: 3px #000000 solid;
+            background: gray;
+            color: white;
+        }
+        .my_button:focus{
+            border: 3px #444444 solid;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: white;
+            color: red;
+            margin: auto;
+        }
+    </style>
 </head>
 <html>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <body>
         
         <div class = "container">
@@ -74,173 +198,173 @@
                 <h8>Chemiae by Educatio</h8>
                     <h10>&nbsp</h10>
                     <div class = "right">
-                        <button id="SignIn" class = "btn waves-effect waves-deep purple" onclick="signUpOpen();">Sign Up</button>
-                        <button id ="Login" class = "btn waves-effect waves-deep purple" onclick="logInOpen();">Log in</button>
+                        <button id="SignIn" class = "my_button" onclick="signUpOpen();">Sign Up</button>
+                        <button id ="Login" class = "my_button" onclick="logInOpen();">Log in</button>
                     </div>
             </div>
             <div class = "hide" id = "after">
                 <h8>Chemiae by Educatio</h8>
                     <h10>&nbsp</h10>
                     <div class = "right">
-                        <button id="test" class = "btn waves-effect waves-deep purple" >Take Test</button>
-                        <button id ="signOut" class = "btn waves-effect waves-deep purple" >Sign Out</button>
+                        <button id="test" class = "my_button" >Take Test</button>
+                        <button id ="signOut" class = "my_button" >Sign Out</button>
                     </div>
             </div>
 
 
-           <div class = "row">
-               <!---Row 1--->
-               <img src="elements/1_Hydrogen.jpg" alt="Hydrogen" width = "67" height="67" id="1" onclick="doGarbage(1);">
-               <div class ="right">
-                   <img src="elements/2_Helium.jpg" alt="helium" width = "67" height="67" id="2" onclick="doGarbage(2);">
-               </div>
-           </div>
             <div class = "row">
+                <!---Row 1--->
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(1);">  <div class = "atom">1</div><div class = "mass">1.0078</div><div class = "symbol">H</div><div class = "name">Hydrogen</div></button>
+                <div class ="right">
+                  <button class = "new_button" style="background-color:#aa00ff;" onclick="doGarbage(2);">  <div class = "atom">2</div><div class = "mass">4.0026</div><div class = "symbol">He</div><div class = "name">Helium</div>  </button>
+                </div>
+              </div>
+              <div class = "row">
                 <!---Row 2--->
-                <img src="elements/3_lithuim.jpg." alt="Lithium" width = "67" height="67" id="3" onclick="doGarbage(3);">
-                <img src="elements/4_Beryllium.jpg" alt="Beryllium" width = "67" height="67" id="4" onclick="doGarbage(4);">
+                <button class = "new_button" style="background-color:#d32f2f;" onclick="doGarbage(3);">  <div class = "atom">3</div><div class = "mass">6.9410</div><div class = "symbol">Li</div><div class = "name">Lithium</div>  </button>
+                <button class = "new_button" style="background-color:#ff8f00;" onclick="doGarbage(4);">  <div class = "atom">4</div><div class = "mass">9.0122</div><div class = "symbol">Be</div><div class = "name">Beryllium</div>  </button>
                 <div class = "right">
-                    <img src="elements/5_Boron.jpg" alt="Boron" width = "67" height="67" id="5" onclick="doGarbage(5);">
-                    <img src="elements/6_Carbon.jpg" alt="Carbon" width = "67" height="67" id="6" onclick="doGarbage(6);">
-                    <img src="elements/7_Nitrogen.jpg" alt="Nitrogen" width = "67" height="67" id="7" onclick="doGarbage(7);">
-                    <img src="elements/8_Oxygen.jpg" alt="Oxygen" width = "67" height="67" id="8" onclick="doGarbage(8);">
-                    <img src="elements/9_Fluorine.jpg" alt="Fluorine" width = "67" height="67" id="9" onclick="doGarbage(9);">
-                    <img src="elements/10_Neon.jpg" alt="Neon" width = "67" height="67" id="10" onclick="doGarbage(10);">
+                  <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(5);">  <div class = "atom">5</div><div class = "mass">10.811</div><div class = "symbol">B</div><div class = "name">Boron</div>  </button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(6);">  <div class = "atom">6</div><div class = "mass">18.998</div><div class = "symbol">C</div><div class = "name">Carbon</div>  </button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(7);">  <div class = "atom">7</div><div class = "mass">18.998</div><div class = "symbol">N</div><div class = "name">Nitrogen</div>  </button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(8);">  <div class = "atom">8</div><div class = "mass">18.998</div><div class = "symbol">O</div><div class = "name">Oxygen</div>  </button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(9);">  <div class = "atom">9</div><div class = "mass">18.998</div><div class = "symbol">F</div><div class = "name">Fluorine</div>  </button>
+                  <button class = "new_button" style="background-color:#aa00ff;" onclick="doGarbage(10);">  <div class = "atom">10</div><div class = "mass">20.180</div><div class = "symbol">Ne</div><div class = "name">Neon</div>  </button>
                 </div>
-            </div>
-            <div class= "row">
-
-                <img src="elements/11_sodium.jpg" alt="Sodium" width = "67" height="67" id="11" onclick="doGarbage(11);">
-                <img src="elements/12_Magnesium.jpg" alt="Magnesium" width = "67" height="67" id="12" onclick="doGarbage(12);">
+              </div>
+              <div class= "row">
+            
+                <button class = "new_button" style="background-color:#d32f2f;" onclick="doGarbage(11);">  <div class = "atom">11</div><div class = "mass">22.990</div><div class = "symbol">Na</div><div class = "name">Sodium</div></button>
+                <button class = "new_button" style="background-color:#ff8f00;" onclick="doGarbage(12);">  <div class = "atom">12</div><div class = "mass">24.305</div><div class = "symbol">Mg</div><div class = "name">Magnesium</div></button>
                 <div class = "right">
-                    <img src="elements/13_Aluminum.jpg" alt="Aluminum" width = "67" height="67" id="13" onclick="doGarbage(13);">
-                    <img src="elements/14_Silicon.jpg" alt="Silicon" width = "67" height="67" id="14" onclick="doGarbage(14);">
-                    <img src="elements/15_Phpsphorus.jpg" alt = "Phpsphorus" width="67" height = "67" id = "15" onclick="doGarbage(15);">
-                    <img src="elements/16_Sulfer.jpg" alt = "Sulfur" width="67" height = "67" id = "16" onclick="doGarbage(16);">
-                    <img src = "elements/17_Chlorine.jpg" alt = "Chlorine" width = "67" height = "67" id="17" onclick="doGarbage(17);">
-                    <img src = "elements/18_Argon.jpg" alt = "Argon" width = "67" height = "67" id="18" onclick="doGarbage(18);">
+                  <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(13);">  <div class = "atom">13</div><div class = "mass">26.982</div><div class = "symbol">Al</div><div class = "name">Aluminum</div></button>
+                  <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(14);">  <div class = "atom">14</div><div class = "mass">28.086</div><div class = "symbol">Si</div><div class = "name">Silicon</div></button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(15);">  <div class = "atom">15</div><div class = "mass">30.974</div><div class = "symbol">P</div><div class = "name">Phosphorus</div></button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(16);">  <div class = "atom">16</div><div class = "mass">32.065</div><div class = "symbol">S</div><div class = "name">Sulfur</div></button>
+                  <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(17);">  <div class = "atom">17</div><div class = "mass">35.453</div><div class = "symbol">Cl</div><div class = "name">Chlorine</div></button>
+                  <button class = "new_button" style="background-color:#aa00ff;" onclick="doGarbage(18);">  <div class = "atom">18</div><div class = "mass">39.948</div><div class = "symbol">Ar</div><div class = "name">Argon</div></button>
                 </div>
-            </div>
-
-            <div class = "row">
+              </div>
+            
+              <div class = "row">
                 <!---Row 4--->
-                <img src="elements/19_Potassium.jpg" alt="Potassium" width = "67" height="67" id="19" onclick="doGarbage(19);">
-                <img src="elements/20_Calcium.jpg" alt="Calcium" width = "67" height="67" id="20" onclick="doGarbage(20);">
-                <img src="elements/21_Scandium.jpg" alt="Scandium" width = "67" height="67" id="21" onclick="doGarbage(21);">
-                <img src="elements/22_Titanuim.jpg" alt="Titanium" width = "67" height="67" id="22" onclick="doGarbage(22);">
-                <img src="elements/23_Vanadium.jpg" alt="Vanadium" width = "67" height="67" id="23" onclick="doGarbage(23);">
-                <img src="elements/24_Chromium.jpg" alt="Chromium" width = "67" height="67" id="24" onclick="doGarbage(24);">
-                <img src="elements/25_Maganese.jpg" alt="Maganese" width = "67" height="67" id="25" onclick="doGarbage(25);">
-                <img src="elements/26_Iron.jpg" alt="Iron" width = "67" height="67" id="26" onclick="doGarbage(26);">
-                <img src="elements/27_Cobalt.jpg" alt="Cobalt" width = "67" height="67" id="27" onclick="doGarbage(27);">
-                <img src="elements/28_Nickel.jpg" alt="Nickel" width = "67" height="67" id="28" onclick="doGarbage(28);">
-                <img src="elements/29_Copper.jpg" alt="Copper" width = "67" height="67" id="29" onclick="doGarbage(29);">
-                <img src="elements/30_Zinc.jpg" alt="Zinc" width = "67" height="67" id="30" onclick="doGarbage(30);">
-                <img src="elements/31_Gallium.jpg" alt="Gallium" width = "67" height="67" id="31" onclick="doGarbage(31);">
-                <img src="elements/32_Germanium.jpg" alt="Germanium" width = "67" height="67" id="32" onclick="doGarbage(32);">
-                <img src="elements/33_Arsenic.jpg" alt="Arsenic" width = "67" height="67" id="33" onclick="doGarbage(33);">
-                <img src="elements/34_Selenium.jpg" alt="Selenium" width = "67" height="67" id="34" onclick="doGarbage(34);">
-                <img src="elements/35_Bromine.jpg" alt="Bromine" width = "67" height="67" id="35" onclick="doGarbage(35);">
-                <img src="elements/36_Krypton.jpg" alt="Krypton" width = "67" height="67" id="36" onclick="doGarbage(36);">
-            </div>
-            <div class = "row">
+                <button class = "new_button" style="background-color:#d32f2f;" onclick="doGarbage(19);">  <div class = "atom">19</div><div class = "mass">39.098</div><div class = "symbol">K</div><div class = "name">Potassium</div></button>
+                <button class = "new_button" style="background-color:#ff8f00;" onclick="doGarbage(20);">  <div class = "atom">20</div><div class = "mass">40.078</div><div class = "symbol">Ca</div><div class = "name">Calcium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(21);">  <div class = "atom">21</div><div class = "mass">44.956</div><div class = "symbol">Sc</div><div class = "name">Scandium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(22);">  <div class = "atom">22</div><div class = "mass">47.867</div><div class = "symbol">Ti</div><div class = "name">Titanium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(23);">  <div class = "atom">23</div><div class = "mass">50.942</div><div class = "symbol">V</div><div class = "name">Vanadium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(24);">  <div class = "atom">24</div><div class = "mass">51.996</div><div class = "symbol">Cr</div><div class = "name">Chromium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(25);">  <div class = "atom">25</div><div class = "mass">54.938</div><div class = "symbol">Mn</div><div class = "name">Manganese</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(26);">  <div class = "atom">26</div><div class = "mass">55.845</div><div class = "symbol">Fe</div><div class = "name">Iron</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(27);">  <div class = "atom">27</div><div class = "mass">58.933</div><div class = "symbol">Co</div><div class = "name">Cobalt</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(28);">  <div class = "atom">28</div><div class = "mass">58.693</div><div class = "symbol">Ni</div><div class = "name">Nickel</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(29);">  <div class = "atom">29</div><div class = "mass">63.546</div><div class = "symbol">Cu</div><div class = "name">Copper</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(30);">  <div class = "atom">30</div><div class = "mass">65.380</div><div class = "symbol">Zn</div><div class = "name">Zinc</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(31);">  <div class = "atom">31</div><div class = "mass">69.723</div><div class = "symbol">Ga</div><div class = "name">Gallium</div></button>
+                <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(32);">  <div class = "atom">32</div><div class = "mass">72.640</div><div class = "symbol">Ge</div><div class = "name">Germanium</div></button>
+                <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(33);">  <div class = "atom">33</div><div class = "mass">74.922</div><div class = "symbol">As</div><div class = "name">Arsenic</div></button>
+                <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(34);">  <div class = "atom">34</div><div class = "mass">78.960</div><div class = "symbol">Se</div><div class = "name">Selenium</div></button>
+                <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(35);">  <div class = "atom">35</div><div class = "mass">79.904</div><div class = "symbol">Br</div><div class = "name">Bromine</div></button>
+                <button class = "new_button" style="background-color:#aa00ff;" onclick="doGarbage(36);">  <div class = "atom">36</div><div class = "mass">83.798</div><div class = "symbol">Kr</div><div class = "name">Krypton</div></button>
+              </div>
+              <div class = "row">
                 <!---Row 5--->
-                <img src="elements/37_Rubidium.jpg" alt="Rubidium" width = "67" height="67" id="37" onclick="doGarbage(37);">
-                <img src="elements/38_Estrontium.jpg" alt="Estrontium" width = "67" height="67" id="38" onclick="doGarbage(38);">
-                <img src="elements/39_Yttrium.jpg" alt="Yttrium" width = "67" height="67" id="39" onclick="doGarbage(39);">
-                <img src="elements/40_Zirconium.jpg" alt="Ziconium" width = "67" height="67" id="40" onclick="doGarbage(40);">
-                <img src="elements/41_Niobium.jpg" alt="Niobium" width = "67" height="67" id="41" onclick="doGarbage(41);">
-                <img src="elements/42_Molybdenum.jpg" alt="Chromium" width = "67" height="67" id="42" onclick="doGarbage(42);">
-                <img src="elements/43_Technetium.jpg" alt="Technetium" width = "67" height="67" id="43" onclick="doGarbage(43);">
-                <img src="elements/44_Ruthenium.jpg" alt="Ruthenium" width = "67" height="67" id="44" onclick="doGarbage(44);">
-                <img src="elements/45_Rhodium.jpg" alt="Rhodium" width = "67" height="67" id="45" onclick="doGarbage(45);">
-                <img src="elements/46_Palladium.jpg" alt="Palladium" width = "67" height="67" id="46" onclick="doGarbage(46);">
-                <img src="elements/47_Silver.jpg" alt="Silver" width = "67" height="67" id="47" onclick="doGarbage(47);">
-                <img src="elements/48_Cadmium.jpg" alt="Cadmium" width = "67" height="67" id="48" onclick="doGarbage(48);">
-                <img src="elements/49_Indium.jpg" alt="Indium" width = "67" height="67" id="49" onclick="doGarbage(49);">
-                <img src="elements/50_Tin.jpg" alt="Tin" width = "67" height="67" id="50" onclick="doGarbage(50);">
-                <img src="elements/51_Antimony.jpg" alt="Antimony" width = "67" height="67" id="51" onclick="doGarbage(51);">
-                <img src="elements/52_Tellurium.jpg" alt="Tellurium" width = "67" height="67" id="52" onclick="doGarbage(52);">
-                <img src="elements/53_Iodine.jpg" alt="Iodine" width = "67" height="67" id="53" onclick="doGarbage(53);">
-                <img src="elements/54_Xenon.jpg" alt="Xenon" width = "67" height="67" id="54" onclick="doGarbage(54);">
-            </div>
-            <div class = "row">
+                <button class = "new_button" style="background-color:#d32f2f;" onclick="doGarbage(37);">  <div class = "atom">37</div><div class = "mass">85.468</div><div class = "symbol">Rb</div><div class = "name">Rubidium</div></button>
+                <button class = "new_button" style="background-color:#ff8f00;" onclick="doGarbage(38);">  <div class = "atom">38</div><div class = "mass">87.620</div><div class = "symbol">Sr</div><div class = "name">Strontium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(39);">  <div class = "atom">39</div><div class = "mass">88.906</div><div class = "symbol">Y</div><div class = "name">Yttrium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(40);">  <div class = "atom">40</div><div class = "mass">91.224</div><div class = "symbol">Zr</div><div class = "name">Zirconium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(41);">  <div class = "atom">41</div><div class = "mass">92.906</div><div class = "symbol">Nb</div><div class = "name">Niobium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(42);">  <div class = "atom">42</div><div class = "mass">95.950</div><div class = "symbol">Mo</div><div class = "name">Molybdenum</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(43);">  <div class = "atom">43</div><div class = "mass">98.000</div><div class = "symbol">Tc</div><div class = "name">Technetium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(44);">  <div class = "atom">44</div><div class = "mass">101.070</div><div class = "symbol">Ru</div><div class = "name">Ruthenium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(45);">  <div class = "atom">45</div><div class = "mass">102.910</div><div class = "symbol">Rh</div><div class = "name">Rhodium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(46);">  <div class = "atom">46</div><div class = "mass">106.420</div><div class = "symbol">Pd</div><div class = "name">Palladium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(47);">  <div class = "atom">47</div><div class = "mass">107.870</div><div class = "symbol">Ag</div><div class = "name">Silver</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(48);">  <div class = "atom">48</div><div class = "mass">112.410</div><div class = "symbol">Cd</div><div class = "name">Cadmium</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(49);">  <div class = "atom">49</div><div class = "mass">114.820</div><div class = "symbol">In</div><div class = "name">Indium</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(50);">  <div class = "atom">50</div><div class = "mass">118.710</div><div class = "symbol">Sn</div><div class = "name">Tin</div></button>
+                <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(51);">  <div class = "atom">51</div><div class = "mass">121.760</div><div class = "symbol">Sb</div><div class = "name">Antimony</div></button>
+                <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(52);">  <div class = "atom">52</div><div class = "mass">127.600</div><div class = "symbol">Te</div><div class = "name">Tellurium</div></button>
+                <button class = "new_button" style="background-color:#01579b;" onclick="doGarbage(53);">  <div class = "atom">53</div><div class = "mass">126.900</div><div class = "symbol">I</div><div class = "name">Iodine</div></button>
+                <button class = "new_button" style="background-color:#aa00ff;" onclick="doGarbage(54);">  <div class = "atom">54</div><div class = "mass">131.290</div><div class = "symbol">Xe</div><div class = "name">Xenon</div></button>
+              </div>
+              <div class = "row">
                 <!---Row 6--->
-                <img src="elements/55_Cesium.jpg" alt="Cesium" width = "67" height="67" id="55" onclick="doGarbage(55);">
-                <img src="elements/56_Barium.jpg" alt="Barium" width = "67" height="67" id="56" onclick="doGarbage(56);">
-                <img src="elements/57-71_Lanthanide_Elements.jpg" alt="Lanthanide_Elements" width = "67" height="67" id="57-71">
-                <img src="elements/72_Hafnium.jpg" alt="Hafnium" width = "67" height="67" id="72" onclick="doGarbage(72);">
-                <img src="elements/73_Tantalum.jpg" alt="Tantalum" width = "67" height="67" id="73" onclick="doGarbage(73);">
-                <img src="elements/74_Tungsten.jpg" alt="Tungsten" width = "67" height="67" id="74" onclick="doGarbage(74);">
-                <img src="elements/75_Rhenium.jpg" alt="Rhenium" width = "67" height="67" id="75" onclick="doGarbage(75);">
-                <img src="elements/76_Osmiun.jpg" alt="Osmium" width = "67" height="67" id="76" onclick="doGarbage(76);">
-                <img src="elements/77_Iridium.jpg" alt="Iridium" width = "67" height="67" id="77" onclick="doGarbage(77);">
-                <img src="elements/78_Platinum.jpg" alt="Platinum" width = "67" height="67" id="78" onclick="doGarbage(78);">
-                <img src="elements/79_Gold.jpg" alt="Gold" width = "67" height="67" id="79" onclick="doGarbage(79);">
-                <img src="elements/80_Mercury.jpg" alt="Mercury" width = "67" height="67" id="80" onclick="doGarbage(80);">
-                <img src="elements/81_Thallium.jpg" alt="Thallium" width = "67" height="67" id="81" onclick="doGarbage(81);">
-                <img src="elements/82_Lead.jpg" alt="Lead" width = "67" height="67" id="82" onclick="doGarbage(82);">
-                <img src="elements/83_Bismouth.jpg" alt="Bismuth" width = "67" height="67" id="83" onclick="doGarbage(83);">
-                <img src="elements/84_Polonium.jpg" alt="Polonium" width = "67" height="67" id="84" onclick="doGarbage(84);">
-                <img src="elements/85_Astatine.jpg" alt="Astatine" width = "67" height="67" id="85" onclick="doGarbage(85);">
-                <img src="elements/86_Radon.jpg" alt="Radon" width = "67" height="67" id="86" onclick="doGarbage(86);">
-            </div>
-            <div class = "row">
+                <button class = "new_button" style="background-color:#d32f2f;" onclick="doGarbage(55);">  <div class = "atom">55</div><div class = "mass">132.91</div><div class = "symbol">Cs</div><div class = "name">Caesium</div></button>
+                <button class = "new_button" style="background-color:#ff8f00;" onclick="doGarbage(56);">  <div class = "atom">56</div><div class = "mass">137.33</div><div class = "symbol">Ba</div><div class = "name">Barium</div></button>
+                <button class = "new_button" style="background-color:#80deea;">  <div class = "atom">..</div><div class = "mass">57-71</div><div class = "symbol">La</div><div class = "name">Lanthanides</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(72);">  <div class = "atom">72</div><div class = "mass">178.49</div><div class = "symbol">Hf</div><div class = "name">Hafnium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(73);">  <div class = "atom">73</div><div class = "mass">180.95</div><div class = "symbol">Ta</div><div class = "name">Tantalum</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(74);">  <div class = "atom">74</div><div class = "mass">183.84</div><div class = "symbol">W</div><div class = "name">Tungsten</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(75);">  <div class = "atom">75</div><div class = "mass">186.21</div><div class = "symbol">Re</div><div class = "name">Rhenium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(76);">  <div class = "atom">76</div><div class = "mass">190.23</div><div class = "symbol">Os</div><div class = "name">Osmium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(77);">  <div class = "atom">77</div><div class = "mass">192.22</div><div class = "symbol">Ir</div><div class = "name">Iridium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(78);">  <div class = "atom">78</div><div class = "mass">195.08</div><div class = "symbol">Pt</div><div class = "name">Platinum</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(79);">  <div class = "atom">79</div><div class = "mass">196.97</div><div class = "symbol">Au</div><div class = "name">Gold</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(80);">  <div class = "atom">80</div><div class = "mass">200.59</div><div class = "symbol">Hg</div><div class = "name">Mercury</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(81);">  <div class = "atom">81</div><div class = "mass">204.38</div><div class = "symbol">Tl</div><div class = "name">Thallium</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(82);">  <div class = "atom">82</div><div class = "mass">207.20</div><div class = "symbol">Pb</div><div class = "name">Lead</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(83);">  <div class = "atom">83</div><div class = "mass">208.98</div><div class = "symbol">Bi</div><div class = "name">Bismuth</div></button>
+                <button class = "new_button" style="background-color:#64dd17;" onclick="doGarbage(84);">  <div class = "atom">84</div><div class = "mass2">209</div><div class = "symbol">Po</div><div class = "name">Polonium</div></button>
+                <button class = "new_button" style="background-color:#03a9f4;" onclick="doGarbage(85);">  <div class = "atom">85</div><div class = "mass2">210</div><div class = "symbol">At</div><div class = "name">Astatine</div></button>
+                <button class = "new_button" style="background-color:#aa00ff;" onclick="doGarbage(86);">  <div class = "atom">86</div><div class = "mass2">222</div><div class = "symbol">Rn</div><div class = "name">Radon</div></button>
+              </div>
+              <div class = "row">
                 <!---Row 7--->
-                <img src="elements/87_Francium.jpg" alt="Francium" width = "67" height="67" id="87" onclick="doGarbage(87);">
-                <img src="elements/88_Radium.jpg" alt="Radium" width = "67" height="67" id="88" onclick="doGarbage(88);">
-                <img src="elements/89-103_Actinide_Elements.jpg" alt="Actinide_Elements" width = "67" height="67" id="89-103">
-                <img src="elements/104_Rutherforedium.jpg" alt="Rutherfordium" width = "67" height="67" id="104" onclick="doGarbage(104);">
-                <img src="elements/105_Dubnium.jpg" alt="Dubnium" width = "67" height="67" id="105" onclick="doGarbage(105);">
-                <img src="elements/106_Seaborgium.jpg" alt="Seaborgium" width = "67" height="67" id="106" onclick="doGarbage(106);">
-                <img src="elements/107_Bohrium.jpg" alt="Bohrium" width = "67" height="67" id="107" onclick="doGarbage(107);">
-                <img src="elements/108_Hassium.jpg" alt="Hassium" width = "67" height="67" id="108" onclick="doGarbage(108);">
-                <img src="elements/109_Meitnerium.jpg" alt="Meitnerium" width = "67" height="67" id="109" onclick="doGarbage(109);">
-                <img src="elements/110_Darmstadtium.jpg" alt="Darmstadtium" width = "67" height="67" id="110" onclick="doGarbage(110);">
-                <img src="elements/112_Copermicium.jpg" alt="Copermicium" width = "67" height="67" id="112" onclick="doGarbage(111);">
-                <img src="elements/111_Roentgenium.jpg" alt="Roentgenium" width = "67" height="67" id="111" onclick="doGarbage(112);">
-                <img src="elements/113_Nihonium.jpg" alt="Nihonium" width = "67" height="67" id="113" onclick="doGarbage(113);">
-                <img src="elements/114_Flerovium.jpg" alt="Flerovium" width = "67" height="67" id="114" onclick="doGarbage(114);">
-                <img src="elements/115_Moscovium.jpg" alt="Moscovium" width = "67" height="67" id="115" onclick="doGarbage(115);">
-                <img src="elements/116_Livermorium.jpg" alt="Livermorium" width = "67" height="67" id="116" onclick="doGarbage(116);">
-                <img src="elements/117_Tennessine.jpg" alt="Tennessine" width = "67" height="67" id="117" onclick="doGarbage(117);">
-                <img src="elements/118_Oganesson.jpg" alt="Oganesson" width = "67" height="67" id="118" onclick="doGarbage(118);">
-            </div>
-
-            <div class = "center">
-                <img src="elements/57_Lanthanium.jpg" alt="Lanthanium" width = "67" height="67" id="57" onclick="doGarbage(57);">
-                <img src="elements/58_Cerium.jpg" alt="Cerium" width = "67" height="67" id="58" onclick="doGarbage(58);">
-                <img src="elements/59_Praseodymium.jpg" alt="Praseodymium" width = "67" height="67" id="59" onclick="doGarbage(59);">
-                <img src="elements/60_Neodymium.jpg" alt="Neodymium" width = "67" height="67" id="60" onclick="doGarbage(60);">
-                <img src="elements/61_Promethium.jpg" alt="Promethium" width = "67" height="67" id="61" onclick="doGarbage(61);">
-                <img src="elements/62_Samarium.jpg" alt="Samarium" width = "67" height="67" id="62" onclick="doGarbage(62);">
-                <img src="elements/63_Europium.jpg" alt="Europium" width = "67" height="67" id="63" onclick="doGarbage(63);">
-                <img src="elements/64_Gadolinium.jpg" alt="Gadolinium" width = "67" height="67" id="64" onclick="doGarbage(64);">
-                <img src="elements/65_Terbium.jpg" alt="Terbium" width = "67" height="67" id="65" onclick="doGarbage(65);">
-                <img src="elements/66_Dysprosium.jpg" alt="Dysprosium" width = "67" height="67" id="66" onclick="doGarbage(66);">
-                <img src="elements/67_Holmium.jpg" alt="Holmium" width = "67" height="67" id="67" onclick="doGarbage(67);">
-                <img src="elements/68_Erbium.jpg" alt="Erbium" width = "67" height="67" id="68" onclick="doGarbage(68);">
-                <img src="elements/69_Thulium.jpg" alt="Thulium" width = "67" height="67" id="69" onclick="doGarbage(69);">
-                <img src="elements/70_Ytterbium.jpg" alt="Ytterbium" width = "67" height="67" id="70" onclick="doGarbage(70);">
-                <img src="elements/71_Lutetium.jpg" alt="Lutetium" width = "67" height="67" id="71" onclick="doGarbage(71);">
-            </div>
-            <div class = "center">
-                <img src="elements/89_Actinium.jpg" alt="Actinium" width = "67" height="67" id="89" onclick="doGarbage(89);">
-                <img src="elements/90_Thorium.jpg" alt="Thorium" width = "67" height="67" id="90" onclick="doGarbage(90);">
-                <img src="elements/91_Protactinium.jpg" alt="Protactinium" width = "67" height="67" id="91" onclick="doGarbage(91);">
-                <img src="elements/92_Uranium.jpg" alt="Uranium" width = "67" height="67" id="92" onclick="doGarbage(92);">
-                <img src="elements/93_Neptunium.jpg" alt="Neptunium" width = "67" height="67" id="93" onclick="doGarbage(93);">
-                <img src="elements/94_Plutonium.jpg" alt="Plutonium" width = "67" height="67" id="94" onclick="doGarbage(94);">
-                <img src="elements/95_Americium.jpg" alt="Americium" width = "67" height="67" id="95" onclick="doGarbage(95);">
-                <img src="elements/96_Curium.jpg" alt="Curium" width = "67" height="67" id="96" onclick="doGarbage(96);">
-                <img src="elements/97_Berkelium.jpg" alt="Berkelium" width = "67" height="67" id="97" onclick="doGarbage(97);">
-                <img src="elements/98_Californium.jpg" alt="Californium" width = "67" height="67" id="98" onclick="doGarbage(98);">
-                <img src="elements/99_Einsteinium.jpg" alt="Einsteinium" width = "67" height="67" id="99" onclick="doGarbage(99);">
-                <img src="elements/100_Fermium.jpg" alt="Fermium" width = "67" height="67" id="100" onclick="doGarbage(100);">
-                <img src="elements/101_Mendelevium.jpg" alt="Mendelevium" width = "67" height="67" id="101" onclick="doGarbage(101);">
-                <img src="elements/102_Nobelium.jpg" alt="Nobelium" width = "67" height="67" id="102" onclick="doGarbage(102);">
-                <img src="elements/103_Lawrencium.jpg" alt="Lawrencium" width = "67" height="67" id="103"onclick="doGarbage(103);">
-            </div>
+                <button class = "new_button" style="background-color:#d32f2f;" onclick="doGarbage(87);">  <div class = "atom">87</div><div class = "mass2">223</div><div class = "symbol">Fr</div><div class = "name">Francium</div></button>
+                <button class = "new_button" style="background-color:#ff8f00;" onclick="doGarbage(88);">  <div class = "atom">88</div><div class = "mass2">226</div><div class = "symbol">Ra</div><div class = "name">Radium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;">  <div class = "atom">..</div><div class = "mass">89-103</div><div class = "symbol">Ac</div><div class = "name">Actinides</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(104);">  <div class = "atom">104</div><div class = "mass2">261</div><div class = "symbol">Rf</div><div class = "name">Rutherfordium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(105);">  <div class = "atom">105</div><div class = "mass2">262</div><div class = "symbol">Db</div><div class = "name">Dubnium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(106);">  <div class = "atom">106</div><div class = "mass2">269</div><div class = "symbol">Sg</div><div class = "name">Seaborgium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(107);">  <div class = "atom">107</div><div class = "mass2">264</div><div class = "symbol">Bh</div><div class = "name">Bohrium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(108);">  <div class = "atom">108</div><div class = "mass2">269</div><div class = "symbol">Hs</div><div class = "name">Hassium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(109);">  <div class = "atom">109</div><div class = "mass2">278</div><div class = "symbol">Mt</div><div class = "name">Meitnerium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(110);">  <div class = "atom">110</div><div class = "mass2">281</div><div class = "symbol">Ds</div><div class = "name">Darmstadtium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(111);">  <div class = "atom">111</div><div class = "mass2">282</div><div class = "symbol">Rg</div><div class = "name">Roentgenium</div></button>
+                <button class = "new_button" style="background-color:#ffeb3b;" onclick="doGarbage(112);">  <div class = "atom">112</div><div class = "mass2">285</div><div class = "symbol">Cn</div><div class = "name">Copernicium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(113);">  <div class = "atom">113</div><div class = "mass2">286</div><div class = "symbol">Nh</div><div class = "name">Nihonium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(114);">  <div class = "atom">114</div><div class = "mass2">289</div><div class = "symbol">Fl</div><div class = "name">Flerovium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(115);">  <div class = "atom">115</div><div class = "mass2">289</div><div class = "symbol">Mo</div><div class = "name">Moscovium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(116);">  <div class = "atom">116</div><div class = "mass2">293</div><div class = "symbol">Lv</div><div class = "name">Livermorium</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(117);">  <div class = "atom">117</div><div class = "mass2">294</div><div class = "symbol">Ts</div><div class = "name">Tennessine</div></button>
+                <button class = "new_button" style="background-color:#ffffff;" onclick="doGarbage(118);">  <div class = "atom">118</div><div class = "mass2">294</div><div class = "symbol">Og</div><div class = "name">Oganesson</div></button>
+              </div>
+            
+              <div class = "center">
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(57);">  <div class = "atom">57</div><div class = "mass">138.91</div><div class = "symbol">La</div><div class = "name">Lanthanum</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(58);">  <div class = "atom">58</div><div class = "mass">140.12</div><div class = "symbol">Ce</div><div class = "name">Cerium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(59);">  <div class = "atom">59</div><div class = "mass">140.91</div><div class = "symbol">Pr</div><div class = "name">Praseodymium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(60);">  <div class = "atom">60</div><div class = "mass">144.24</div><div class = "symbol">Nd</div><div class = "name">Neodymium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(61);">  <div class = "atom">61</div><div class = "mass2">145</div><div class = "symbol">Pr</div><div class = "name">Promethium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(62);">  <div class = "atom">62</div><div class = "mass">150.36</div><div class = "symbol">Sm</div><div class = "name">Samarium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(63);">  <div class = "atom">63</div><div class = "mass">151.96</div><div class = "symbol">Eu</div><div class = "name">Europium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(64);">  <div class = "atom">64</div><div class = "mass">157.25</div><div class = "symbol">Gd</div><div class = "name">Gadolinium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(65);">  <div class = "atom">65</div><div class = "mass">158.93</div><div class = "symbol">Tb</div><div class = "name">Terbium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(66);">  <div class = "atom">66</div><div class = "mass">162.50</div><div class = "symbol">Dy</div><div class = "name">Dysprosium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(67);">  <div class = "atom">67</div><div class = "mass">164.93</div><div class = "symbol">Ho</div><div class = "name">Holmium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(68);">  <div class = "atom">68</div><div class = "mass">167.26</div><div class = "symbol">Er</div><div class = "name">Erbium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(69);">  <div class = "atom">69</div><div class = "mass">168.93</div><div class = "symbol">Th</div><div class = "name">Thulium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(70);">  <div class = "atom">70</div><div class = "mass">173.04</div><div class = "symbol">Yb</div><div class = "name">Ytterbium</div></button>
+                <button class = "new_button" style="background-color:#80deea;"onclick="doGarbage(71);">  <div class = "atom">71</div><div class = "mass">174.97</div><div class = "symbol">Lu</div><div class = "name">Lutetium</div></button>
+              </div>
+              <div class = "center">
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(89);">  <div class = "atom">89</div><div class = "mass2">227</div><div class = "symbol">Ac</div><div class = "name">Actinium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(90);">  <div class = "atom">90</div><div class = "mass">232.04</div><div class = "symbol">Th</div><div class = "name">Thorium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(91);">  <div class = "atom">91</div><div class = "mass">231.04</div><div class = "symbol">Pa</div><div class = "name">Protactinium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(92);">  <div class = "atom">92</div><div class = "mass">238.03</div><div class = "symbol">U</div><div class = "name">Uranium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(93);">  <div class = "atom">93</div><div class = "mass">237.05</div><div class = "symbol">Np</div><div class = "name">Neptunium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(94);">  <div class = "atom">94</div><div class = "mass">244</div><div class = "symbol">Pu</div><div class = "name">Plutonium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(95);">  <div class = "atom">95</div><div class = "mass2">243</div><div class = "symbol">Am</div><div class = "name">Americium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(96);">  <div class = "atom">96</div><div class = "mass2">247</div><div class = "symbol">Cm</div><div class = "name">Curium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(97);">  <div class = "atom">97</div><div class = "mass2">247</div><div class = "symbol">Bk</div><div class = "name">Berkelium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(98);">  <div class = "atom">98</div><div class = "mass2">251</div><div class = "symbol">Cf</div><div class = "name">Californium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(99);">  <div class = "atom">99</div><div class = "mass2">252</div><div class = "symbol">Es</div><div class = "name">Einsteinium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(100);">  <div class = "atom">100</div><div class = "mass2">257</div><div class = "symbol">Fm</div><div class = "name">Fermium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(101);">  <div class = "atom">101</div><div class = "mass2">258</div><div class = "symbol">Md</div><div class = "name">Mendelevium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(102);">  <div class = "atom">102</div><div class = "mass2">259</div><div class = "symbol">No</div><div class = "name">Nobelium</div></button>
+                <button class = "new_button" style="background-color:#69f0ae;" onclick="doGarbage(103);">  <div class = "atom">103</div><div class = "mass2">262</div><div class = "symbol">Lr</div><div class = "name">Lawrencium</div></button>
+              </div>
         </div>
         <div class="popup" id="popUp">
             <div class = "overlay"></div>
@@ -270,6 +394,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     
     <style>
         .custom_button{
             border: 3px #444444 solid;
@@ -298,7 +423,39 @@
 
         .hide{display:none;}
     </style>
+    <style>
+        .my_button{
+            border: 3px #444444 solid;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: white;
+            color: #9c27b0;
+            font-size: 15px;
+            width: 120px;
+            height: 32px;
+            margin: auto;
+        }
+        .my_button:hover{
+            border: 3px #000000 solid;
+            background: gray;
+            color: white;
+        }
+        .my_button:focus{
+            border: 3px #444444 solid;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: white;
+            color: red;
+            margin: auto;
+        }
+    </style>
     <body>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
         <div class="popup" id="logInPage">
             <div class = "overlay"></div>
             <div class="content">
@@ -316,7 +473,7 @@
                             </div>
                         </div>
                         <div class = "row">
-                            <button id = "login" class = "btn waves-effect waves-light amber darken-4">Log In</button>
+                            <button id = "login" class = "my_button">Log In</button>
                         </div>
                     
                     </div>
@@ -339,7 +496,7 @@
                             </div>
                         </div>
                         <div class = "row">
-                            <button id = "signUp" class = "btn waves-effect waves-light amber darken-4">Create Account</button>
+                            <button id = "signUp" class = "my_button">Create Account</button>
                         </div>
                     
                     </div>
@@ -361,7 +518,7 @@
                         </div>
                     </div>
                     <div id = "value" class = "row">
-                        <button  id = "next" class = "custom_button"  onclick = "newQuestion();" >Next</button>
+                        <button  id = "next" class = "my_button"  onclick = "newQuestion();" >Next</button>
                     </div>
                 </div>
             </div>
@@ -373,5 +530,4 @@
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
     <SCRIPT src = "IndexScriptTwo.js"></SCRIPT>
 </html>
-
 
