@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <base target = "_top">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>MainPage</title>
+    <style>
+        .hi {
+            padding: 0px 0px 0px 67px;
+        }
+        .popup  .overlay{
+            position:fixed;
+            top:0px;
+            left: 0px;
+            width:100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            z-index: 1;
+            display: none;
+        }
+        .popup .content{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%)  scale(0);
+            background: #fff;
+            width: 600px;
+            height: 500px;
+            z-index:2;
+            text-align: center;
+            padding:20px;
+            box-sizing: border-box;
+        }
+        .popup .close-btn{
+            position: absolute;
+            right: 20px;
+            top:20px;
+            width:30px;
+            height: 30px;
+            background: #222;
+            color: #fff;
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        .popup.active .overlay{
+            display: block;
+        }
+
+        .popup.active .content{
+            transition: all 300ms ease-in-out;
+            transform:translate(-50%,-50%)scale(1);
+        }
+
+        .hide{display:none;}
+    </style>
+     <style>
+        .hi {
+          padding: 0px 0px 0px 67px;
+        }
+        .popup  .overlay{
+          position:fixed;
+          top:0px;
+          left: 0px;
+          width:100vw;
+          height: 100vh;
+          background: rgba(0,0,0,0.7);
+          z-index: 1;
+          display: none;
+        }
+        .popup .content{
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%)  scale(0);
+          background: #fff;
+          width: 600px;
+          height: 500px;
+          z-index:2;
+          text-align: center;
+          padding:20px;
+          box-sizing: border-box;
+        }
+        .popup .close-btn{
+          position: absolute;
+          right: 20px;
+          top:20px;
+          width:30px;
+          height: 30px;
+          background: #222;
+          color: #fff;
+          font-size: 25px;
+          font-weight: 600;
+          line-height: 30px;
+          text-align: center;
+          border-radius: 50%;
+        }
+        .popup.active .overlay{
+          display: block;
+        }
+    
+        .popup.active .content{
+          transition: all 300ms ease-in-out;
+          transform:translate(-50%,-50%)scale(1);
+        }
+    
+        .hide{display:none;}
+    
+        .new_button{
+          border: 3px Black solid;
+          border-radius: 10px;
+          -moz-border-radius: 10px;
+          background: white;
+          width: 67px;
+          height: 67px;
+          margin: auto;
+        }
+        .new_button .symbol{
+          position: relative;
+          top: -8px;
+          width: 100%;
+          text-align: center;
+          font-size: 20px;
+          color: black;
+        }
+        .new_button .atom{
+          position: relative;
+          top: -2px;
+          left: -18px;
+          font-size: 13px;
+        }
+        .new_button .mass{
+          position: relative;
+          top: -16px;
+          left: 12px;
+          font-size: 10px;
+        }
+        .new_button .mass2{
+          position: relative;
+          top: -16px;
+          left: 16px;
+          font-size: 10px;
+        }
+        .new_button .name{
+          position: relative;
+          top: -3px;
+          right: 0;
+          font-size: 8px;
+        }
+      </style>
+      <style>
+        .my_button{
+            border: 3px #444444 solid;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: white;
+            color: #9c27b0;
+            font-size: 15px;
+            width: 120px;
+            height: 32px;
+            margin: auto;
+        }
+        .my_button:hover{
+            border: 3px #000000 solid;
+            background: gray;
+            color: white;
+        }
+        .my_button:focus{
+            border: 3px #444444 solid;
+            border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: white;
+            color: red;
+            margin: auto;
+        }
+    </style>
+    <style>
+      body {
+        background-image: url('Background.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      .header {
+        padding: 30px;
+        text-align: center;
+        background: #FFA500;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+      }
+      </style>
+</head>
+  <body>
+    
+        <div class = "header" id = "before">
+            <h7>Educatio</h7>
+            <div class = "right">
+              <button id="SignIn" class = "my_button" onclick="signUpOpen();">Sign Up</button>
+              <button id ="Login" class = "my_button" onclick="logInOpen();">Log in</button>
+          </div>   
+        </div>
+        
+        <div class = "hide" id = "after">
+            <h8>Educatio</h8>
+                <h10>&nbsp</h10>
+                <div class = "right">
+                    <button id="test" class = "my_button" >Take Test</button>
+                    <button id ="signOut" class = "my_button" >Sign Out</button>
+                </div>
+        </div>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+        <div class="popup" id="logInPage">
+            <div class = "overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="logInOpen();">&times</div>
+                    <div class = "container">
+                        <h5>Welcome</h5>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input id="emailLog" type="text" class="validate" required>
+                            <label for="emailLog">Email</label>
+                            </div>
+                            <div class="input-field col s6">
+                            <input id="passwordLog" type="password" class="validate">
+                            <label for="passwordLog">Password</label>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <button id = "login" class = "my_button">Log In</button>
+                        </div>
+                    
+                    </div>
+            </div>
+        </div>
+        <div class="popup" id="signUpPage">
+            <div class = "overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="signUpOpen();">&times</div>
+                    <div class = "container">
+                        <h5>Sign Up a New Account</h5>
+                        <div class="row">
+                            <div class="input-field col s6">
+                            <input id="emailSign" type="text" class="validate" required>
+                            <label for="emailSign">Email</label>
+                            </div>
+                            <div class="input-field col s6">
+                            <input id="passwordSign" type="password" class="validate">
+                            <label for="passwordSign">Password</label>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <button id = "signUp" class = "my_button">Create Account</button>
+                        </div>
+                    
+                    </div>
+            </div>
+        </div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <SCRIPT src = "IndexScriptTwo.js"></SCRIPT>
+  </body>
+</html>
